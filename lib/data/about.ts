@@ -1,0 +1,77 @@
+// lib/data/about.ts
+
+import { Users, Trophy, Sparkles, ThumbsUp } from "lucide-react";
+
+/**
+ * This file contains data specific to the "About Us" section and page.
+ * It includes content for the About section on the homepage and potentially
+ * a dedicated About page.
+ *
+ * === How to Customize ===
+ *
+ * 1.  **About Section Content (`aboutSectionContent`):**
+ *     -   `sectionTitle`: The small title above the main heading.
+ *     -   `title`: The main heading, split into two lines for styling.
+ *     -   `paragraphs`: Update these with your company's story, mission,
+ *         and values. Each string in the array is a separate paragraph.
+ *     -   `image`: Customize the year of experience and descriptive lines.
+ *     -   `statsCard`: A featured statistic with a value and label.
+ *     -   `stats`: An array of smaller statistics with icons (`lucide-react`),
+ *         values, and labels.
+ *     -   `values`: Highlight your core company values with titles and descriptions.
+ *         The `icon` property uses icons from `lucide-react`.
+ */
+
+// ============================================================================
+// About Section Content
+// ============================================================================
+
+export const aboutSectionContent = {
+  sectionTitle: "About Us",
+  title: {
+    line1: "Your Trusted",
+    line2: "Business Partner"
+  },
+  paragraphs: [
+    "Since 2015, we've been helping clients achieve their goals with exceptional service. What started as a small operation has grown into one of the region's most trusted service providers.",
+    "Our team of trained professionals uses industry-leading methods and best practices to deliver results that exceed expectations. We treat every client like family, because your satisfaction is our success."
+  ],
+  image: {
+    /** Path to the about section image. Set to null to use the animated visual instead. */
+    src: "/about-image.svg",
+    /** The main number/stat displayed prominently (e.g., "10+" for years) */
+    year: "10+",
+    /** First line of text below the year (e.g., "Years of Excellence") */
+    line1: "Years of Excellence",
+    /** Second line of text (e.g., "Serving Clients Since 2015") */
+    line2: "Serving Clients Since 2015",
+  },
+  statsCard: {
+    value: "99%",
+    label: "Satisfaction"
+  },
+  stats: [
+    { icon: Users, value: "500+", label: "Happy Clients" },
+    { icon: Trophy, value: "10+", label: "Years Experience" },
+    { icon: Sparkles, value: "5K+", label: "Projects Completed" },
+    { icon: ThumbsUp, value: "99%", label: "Satisfaction Rate" },
+  ],
+  values: [
+    {
+      title: "Quality First",
+      description: "We use the best tools and methods to deliver outstanding results every time.",
+    },
+    {
+      title: "Customer Focus",
+      description: "Your needs are our priority. We tailor our approach to exceed expectations.",
+    },
+    {
+      title: "Reliable Service",
+      description: "We show up on time, every time. Your schedule is our priority.",
+    },
+    {
+      title: "Fair Pricing",
+      description: "Transparent quotes with no hidden fees. You know exactly what you're paying for.",
+    },
+  ]
+};
