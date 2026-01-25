@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Sparkles, Phone, Mail, MapPin, Facebook, Instagram, Youtube } from "lucide-react"
 
@@ -31,14 +32,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center glow-blue">
-                <Sparkles className="w-6 h-6 text-primary-foreground" />
+            <Link href="/" className="flex items-center mb-6">
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/branding/logo-transparent-header.png"
+                  alt={`${companyInfo.name} Logo`}
+                  width={200}
+                  height={200}
+                  className="object-contain max-h-20 w-auto"
+                />
               </div>
-              <span className="text-xl font-bold">
-                <span className="gradient-text">{companyInfo.name.split(" ")[0]}</span>
-                <span className="text-foreground"> {companyInfo.name.split(" ").slice(1).join(" ")}</span>
-              </span>
             </Link>
             <p className="text-muted-foreground mb-6">
               {companyInfo.tagline}. {footerContent.taglineSuffix}
