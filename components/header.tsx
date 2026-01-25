@@ -223,89 +223,95 @@ export function Header() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-1 sm:gap-3">
+            {siteConfig.showPhoneNumber && (
+              <>
+                {/* Divider */}
+                <div className="hidden md:block w-px h-8 bg-border" />
 
-
-            {/* Divider */}
-            <div className="hidden md:block w-px h-8 bg-border" />
-
-            {/* Phone Button */}
-            <motion.a
-              href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
-              className="flex items-center gap-2 px-2 sm:px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all group whitespace-nowrap"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.div
-                animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
-              >
-                <Phone className="w-4 h-4" />
-              </motion.div>
-              <span className="text-sm font-medium hidden lg:inline">{companyInfo.phone}</span>
-            </motion.a>
+                {/* Phone Button */}
+                <motion.a
+                  href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
+                  className="flex items-center gap-2 px-2 sm:px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all group whitespace-nowrap"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <motion.div
+                    animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
+                    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
+                  >
+                    <Phone className="w-4 h-4" />
+                  </motion.div>
+                  <span className="text-sm font-medium hidden lg:inline">{companyInfo.phone}</span>
+                </motion.a>
+              </>
+            )}
 
             {/* Location Button with Dropdown */}
-            <div ref={locationRef} className="relative hidden sm:block">
-              <motion.button
-                onClick={() => setIsLocationOpen(!isLocationOpen)}
-                className={cn(
-                  "relative w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 overflow-hidden",
-                  isLocationOpen && "bg-primary text-primary-foreground"
-                )}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Get Directions"
-              >
-                <MapPin className="w-4 h-4 relative z-10" />
-              </motion.button>
+            {siteConfig.showMapIcon && (
+              <div ref={locationRef} className="relative hidden sm:block">
+                <motion.button
+                  onClick={() => setIsLocationOpen(!isLocationOpen)}
+                  className={cn(
+                    "relative w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 overflow-hidden",
+                    isLocationOpen && "bg-primary text-primary-foreground"
+                  )}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Get Directions"
+                >
+                  <MapPin className="w-4 h-4 relative z-10" />
+                </motion.button>
 
-              <AnimatePresence>
-                {isLocationOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-2 w-72 p-4 rounded-2xl glass-card shadow-2xl backdrop-blur-xl bg-card/80"
-                  >
-                    <div className="absolute -top-3 right-4 w-6 h-6 rotate-45 bg-card border-l border-t border-border" />
-                    <div className="relative">
-                      <h3 className="text-sm font-semibold mb-3">{headerContent.locationDropdown.title}</h3>
+                <AnimatePresence>
+                  {isLocationOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full right-0 mt-2 w-72 p-4 rounded-2xl glass-card shadow-2xl backdrop-blur-xl bg-card/80"
+                    >
+                      <div className="absolute -top-3 right-4 w-6 h-6 rotate-45 bg-card border-l border-t border-border" />
+                      <div className="relative">
+                        <h3 className="text-sm font-semibold mb-3">{headerContent.locationDropdown.title}</h3>
 
-                      {/* Map Preview */}
-                      <div className="aspect-video rounded-xl bg-primary/5 border border-border overflow-hidden relative mb-3">
-                        <Image
-                          src="/map-preview.svg"
-                          alt={`Map showing ${companyInfo.name} location`}
-                          fill
-                          className="object-cover"
-                          sizes="288px"
-                        />
-                        {/* Overlay with address */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-2">
-                          <p className="text-xs text-muted-foreground px-2 text-center">{companyInfo.address}</p>
+                        {/* Map Preview */}
+                        <div className="aspect-video rounded-xl bg-primary/5 border border-border overflow-hidden relative mb-3">
+                          <Image
+                            src="/map-preview.svg"
+                            alt={`Map showing ${companyInfo.name} location`}
+                            fill
+                            className="object-cover"
+                            sizes="288px"
+                          />
+                          {/* Overlay with address */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-2">
+                            <p className="text-xs text-muted-foreground px-2 text-center">{companyInfo.address}</p>
+                          </div>
                         </div>
-                      </div>
 
-                      <Button asChild className="w-full glow-blue" size="sm">
-                        <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
-                          <Navigation className="w-4 h-4 mr-2" />
-                          {headerContent.locationDropdown.buttonText}
-                        </a>
-                      </Button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                        <Button asChild className="w-full glow-blue" size="sm">
+                          <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+                            <Navigation className="w-4 h-4 mr-2" />
+                            {headerContent.locationDropdown.buttonText}
+                          </a>
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
 
             {/* CTA Button */}
-            <Button asChild size="sm" className="glow-blue text-xs sm:text-sm px-2 sm:px-4 whitespace-nowrap">
-              <Link href="/#contact">
-                <span className="hidden sm:inline">{headerContent.ctaButton.desktop}</span>
-                <span className="sm:hidden">{headerContent.ctaButton.mobile}</span>
-              </Link>
-            </Button>
+            {siteConfig.showGetFreeQuoteButton && (
+              <Button asChild size="sm" className="glow-blue text-xs sm:text-sm px-2 sm:px-4 whitespace-nowrap">
+                <Link href="/#contact">
+                  <span className="hidden sm:inline">{headerContent.ctaButton.desktop}</span>
+                  <span className="sm:hidden">{headerContent.ctaButton.mobile}</span>
+                </Link>
+              </Button>
+            )}
 
             {/* Mobile Menu Toggle */}
             <button
@@ -381,25 +387,31 @@ export function Header() {
                 </div>
 
                 <div className="pt-3 border-t border-border space-y-2">
-                  <a
-                    href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
-                    className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span className="font-medium">{companyInfo.phone}</span>
-                  </a>
-                  <a
-                    href={googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
-                  >
-                    <Navigation className="w-4 h-4" />
-                    <span className="font-medium">{headerContent.mobileMenu.getDirections}</span>
-                  </a>
-                  <Button asChild className="w-full glow-blue" size="sm">
-                    <Link href="/#contact">{headerContent.mobileMenu.getQuote}</Link>
-                  </Button>
+                  {siteConfig.showPhoneNumber && (
+                    <a
+                      href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
+                      className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span className="font-medium">{companyInfo.phone}</span>
+                    </a>
+                  )}
+                  {siteConfig.showMapIcon && (
+                    <a
+                      href={googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
+                    >
+                      <Navigation className="w-4 h-4" />
+                      <span className="font-medium">{headerContent.mobileMenu.getDirections}</span>
+                    </a>
+                  )}
+                  {siteConfig.showGetFreeQuoteButton && (
+                    <Button asChild className="w-full glow-blue" size="sm">
+                      <Link href="/#contact">{headerContent.mobileMenu.getQuote}</Link>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

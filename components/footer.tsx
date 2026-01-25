@@ -11,7 +11,7 @@ function XIcon({ className }: { className?: string }) {
     </svg>
   )
 }
-import { services, companyInfo, footerContent } from "@/lib/data"
+import { services, companyInfo, footerContent, siteConfig } from "@/lib/data"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -129,15 +129,17 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-6">{footerContent.columns.contact.title}</h3>
             <ul className="space-y-4">
-              <li>
-                <a
-                  href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
-                  className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors text-sm"
-                >
-                  <Phone className="w-5 h-5 text-primary" />
-                  {companyInfo.phone}
-                </a>
-              </li>
+              {siteConfig.showPhoneNumber && (
+                <li>
+                  <a
+                    href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
+                    className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors text-sm"
+                  >
+                    <Phone className="w-5 h-5 text-primary" />
+                    {companyInfo.phone}
+                  </a>
+                </li>
+              )}
               <li>
                 <a
                   href={`mailto:${companyInfo.email}`}
@@ -147,12 +149,14 @@ export function Footer() {
                   {companyInfo.email}
                 </a>
               </li>
-              <li>
-                <div className="flex items-start gap-3 text-muted-foreground text-sm">
-                  <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  {companyInfo.address}
-                </div>
-              </li>
+              {siteConfig.showMapIcon && (
+                <li>
+                  <div className="flex items-start gap-3 text-muted-foreground text-sm">
+                    <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    {companyInfo.address}
+                  </div>
+                </li>
+              )}
             </ul>
 
             <div className="mt-6 p-4 rounded-xl glass-card">

@@ -4,7 +4,7 @@ import * as React from "react"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader2, Navigation } from "lucide-react"
-import { companyInfo, services, contactSectionContent } from "@/lib/data"
+import { companyInfo, services, contactSectionContent, siteConfig } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -16,13 +16,13 @@ import { formatPhoneNumber } from "@/lib/utils"
 const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(companyInfo.address)}`
 
 const contactInfo = [
-  {
+  ...(siteConfig.showPhoneNumber ? [{
     icon: Phone,
     label: "Phone",
     value: companyInfo.phone,
     href: `tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`,
     external: false,
-  },
+  }] : []),
   {
     icon: Mail,
     label: "Email",
@@ -30,13 +30,13 @@ const contactInfo = [
     href: `mailto:${companyInfo.email}`,
     external: false,
   },
-  {
+  ...(siteConfig.showMapIcon ? [{
     icon: MapPin,
     label: "Address",
     value: companyInfo.address,
     href: googleMapsUrl,
     external: true,
-  },
+  }] : []),
   {
     icon: Clock,
     label: "Hours",
@@ -44,7 +44,7 @@ const contactInfo = [
     href: "#",
     external: false,
   },
-]
+].filter(Boolean)
 
 export function ContactSection() {
   const ref = React.useRef<HTMLDivElement>(null)

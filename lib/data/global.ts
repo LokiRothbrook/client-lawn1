@@ -75,6 +75,9 @@ export const companyInfo = {
  * - Set `enabled: true` to show a page or section, or `false` to hide it.
  * - `showIndividualServicesPricing`: Toggle the display of the individual
  *   services pricing section on the pricing page.
+ * - `showPhoneNumber`: Toggle the display of the phone number in header and footer.
+ * - `showMapIcon`: Toggle the display of the map icon/directions in header and footer.
+ * - `showGetFreeQuoteButton`: Toggle the display of the get free quote button.
  */
 export const siteConfig = {
   pages: {
@@ -112,6 +115,10 @@ export const siteConfig = {
       enabled: true,
     },
   },
+  // Header and footer display toggles
+  showPhoneNumber: true,
+  showMapIcon: false, // Set to false as requested
+  showGetFreeQuoteButton: true,
 };
 
 // ============================================================================
