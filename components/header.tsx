@@ -17,7 +17,6 @@ import {
   Navigation,
   Leaf,
 } from "lucide-react"
-import { getIcon } from "@/lib/icon-map"
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -184,7 +183,6 @@ export function Header() {
                         </div>
                         <div className="grid grid-cols-2 gap-3">
                           {services.map((service, index) => {
-                            const ServiceIcon = getIcon(service.iconName)
                             return (
                               <motion.div
                                 key={service.id}
@@ -197,8 +195,14 @@ export function Header() {
                                   onClick={() => setIsServicesOpen(false)}
                                   className="group flex items-start gap-3 p-3 rounded-xl hover:bg-primary/5 transition-all border border-transparent hover:border-primary/20"
                                 >
-                                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
-                                    {ServiceIcon && <ServiceIcon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />}
+                                  <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center group-hover:scale-110 transition-all">
+                                    <Image
+                                      src={service.image}
+                                      alt={service.title}
+                                      width={40}
+                                      height={40}
+                                      className="object-cover"
+                                    />
                                   </div>
                                   <div className="flex-1 min-w-0">
                                     <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
@@ -351,21 +355,27 @@ export function Header() {
                           {headerContent.mobileMenu.services}
                         </Link>
                         <div className="pl-3 space-y-0.5">
-                          {services.map((service) => {
-                            const ServiceIcon = getIcon(service.iconName)
-                            return (
-                              <Link
-                                key={service.id}
-                                href={`/services/${service.id}`}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
-                              >
-                                {ServiceIcon && <ServiceIcon className="w-3.5 h-3.5" />}
-                                {service.title}
-                              </Link>
-                            )
-                          })}
-                        </div>
+                                                      {services.map((service) => {
+                                                      return (
+                                                        <Link
+                                                          key={service.id}
+                                                          href={`/services/${service.id}`}
+                                                          onClick={() => setIsMobileMenuOpen(false)}
+                                                          className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                                        >
+                                                          <div className="flex-shrink-0 w-6 h-6 rounded-md overflow-hidden">
+                                                            <Image
+                                                              src={service.image}
+                                                              alt={service.title}
+                                                              width={24}
+                                                              height={24}
+                                                              className="object-cover"
+                                                            />
+                                                          </div>
+                                                          {service.title}
+                                                        </Link>
+                                                      )
+                                                    })}                        </div>
                       </div>
                     ) : (
                       <Link

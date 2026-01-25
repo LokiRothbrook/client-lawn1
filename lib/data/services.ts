@@ -78,7 +78,7 @@ export const services: Service[] = [
       "Edging along walkways & driveways",
       "Grass clipping cleanup included"
     ],
-    image: "/services/service-1.svg",
+    image: "/services/lawn-mowing.webp",
     price: "From $35"
   },
   {
