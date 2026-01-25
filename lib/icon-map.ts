@@ -50,6 +50,11 @@ import {
   TreeDeciduous,
   Wind,
   Sun,
+  Home,
+  Building,
+  Clock,
+  Sparkles,
+
 
   // ========================================
   // COMMON ICONS - Uncomment as needed
@@ -228,6 +233,10 @@ const iconMap: Record<string, LucideIcon> = {
   TreeDeciduous,
   Wind,
   Sun,
+  Home,
+  Building,
+  Clock,
+  Sparkles,
 
   // ========================================
   // COMMON ICONS - Uncomment as needed

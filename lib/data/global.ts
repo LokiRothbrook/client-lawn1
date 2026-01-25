@@ -33,7 +33,7 @@
  *         Modify the title, subtitle, and button texts/links here.
  */
 
-import { Shield, Award, Clock, Sparkles } from "lucide-react"; // Only for hero trust badges
+
 
 // ============================================================================
 // Company Information
@@ -270,20 +270,7 @@ export const heroSectionContent = {
       href: "/services"
     }
   },
-  trustBadges: [
-    {
-      icon: Shield,
-      text: "Fully Insured"
-    },
-    {
-      icon: Award,
-      text: "Licensed & Certified"
-    },
-    {
-      icon: Clock,
-      text: "Same Week Service"
-    }
-  ],
+
   heroCards: [
     {
       id: 1,
@@ -291,7 +278,7 @@ export const heroSectionContent = {
       subtitle: "For Homeowners",
       description: "Keep your lawn the envy of the neighborhood with our comprehensive residential lawn care packages tailored to your yard's unique needs.",
       cardClass: "hero-card-1",
-      icon: Sparkles,
+      icon: "Home",
       stats: "500+ Happy Homeowners",
       delay: 0,
     },
@@ -301,7 +288,7 @@ export const heroSectionContent = {
       subtitle: "For Businesses",
       description: "Make a great first impression with professionally maintained grounds. We serve offices, HOAs, retail centers, and more.",
       cardClass: "hero-card-2",
-      icon: Award,
+      icon: "Building",
       stats: "100+ Properties Maintained",
       delay: 0.1,
     },
@@ -311,7 +298,7 @@ export const heroSectionContent = {
       subtitle: "Year-Round Care",
       description: "From spring cleanup to fall leaf removal and winter prep, we keep your lawn healthy through every season.",
       cardClass: "hero-card-3",
-      icon: Clock,
+      icon: "Clock",
       stats: "12-Month Programs",
       delay: 0.2,
     },

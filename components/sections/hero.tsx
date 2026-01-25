@@ -7,6 +7,7 @@ import { ArrowRight, Leaf } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { heroSectionContent } from "@/lib/data"
+import { getIcon } from "@/lib/icon-map"
 
 interface ParticleStyle {
   left?: string;
@@ -182,20 +183,7 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
-          {/* Trust Badges - Displaying key assurances like "Fully Insured", "Licensed Pros". */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex items-center justify-center gap-8 mt-12 text-sm text-muted-foreground"
-          >
-            {heroSectionContent.trustBadges.map((badge, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <badge.icon className="w-5 h-5 text-primary" />
-                <span>{badge.text}</span>
-              </div>
-            ))}
-          </motion.div>
+
         </div>
 
         {/* Hero Cards Grid - Displays feature/service highlights in a grid layout. */}
@@ -232,7 +220,10 @@ export function HeroSection() {
                     flex items-center justify-center mb-6
                     group-hover:scale-110 transition-transform duration-300
                   `}>
-                    <card.icon className="w-7 h-7 text-primary" />
+                    {(() => {
+                      const Icon = getIcon(card.icon);
+                      return Icon ? <Icon className="w-7 h-7 text-primary" /> : null;
+                    })()}
                   </div>
 
                   {/* Card Title and Subtitle */}
