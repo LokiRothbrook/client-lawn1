@@ -111,21 +111,23 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/#" className="flex items-center gap-2 group">
+          <Link href="/#" className="flex items-center group flex-shrink-0">
             <motion.div
               className="relative"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center glow-blue">
-                <Leaf className="w-6 h-6 text-primary-foreground" />
+              <div className="flex-shrink-0 flex items-center justify-center">
+                <Image
+                  src="/branding/logo-transparent-header.png"
+                  alt={`${companyInfo.name} Logo`}
+                  width={200}
+                  height={200}
+                  className="object-contain w-auto h-auto flex-shrink-0"
+                />
               </div>
               <div className="absolute inset-0 rounded-xl bg-primary/30 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
-            <span className="text-xl font-bold whitespace-nowrap">
-              <span className="gradient-text">{companyInfo.name.split(" ")[0]}</span>
-              <span className="text-foreground"> {companyInfo.name.split(" ").slice(1).join(" ")}</span>
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

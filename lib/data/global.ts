@@ -48,10 +48,10 @@ import { Shield, Award, Clock, Sparkles } from "lucide-react"; // Only for hero 
  * - Replace all placeholder strings with your actual business information.
  */
 export const companyInfo = {
-  name: "GreenScape Lawn Care",
+  name: "Cale's Lawncare",
   tagline: "Your Lawn, Our Passion",
-  phone: "(555) LAWN-123",
-  email: "info@greenscapelawncare.com",
+  phone: "(309) 333-7599",
+  email: "cale.dylan@gmail.com",
   address: "456 Garden Way, Springfield, IL 62701",
   hours: "Mon-Sat: 7AM-7PM | Sun: 9AM-5PM",
   social: {

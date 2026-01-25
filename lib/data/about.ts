@@ -33,7 +33,7 @@ export const aboutSectionContent = {
     line2: "Lawn Care Experts"
   },
   paragraphs: [
-    "Since 2015, GreenScape Lawn Care has been transforming yards across Springfield and the surrounding communities. What started as a one-man mowing operation has grown into a full-service lawn care company trusted by hundreds of homeowners and businesses.",
+    "Since 2015, Cale's Lawncare has been transforming yards across Springfield and the surrounding communities. What started as a one-man mowing operation has grown into a full-service lawn care company trusted by hundreds of homeowners and businesses.",
     "Our team of certified lawn care professionals uses commercial-grade equipment and proven techniques to deliver results that make your neighbors jealous. We treat every lawn like it's our own, because your satisfaction is what keeps us growing."
   ],
   image: {
