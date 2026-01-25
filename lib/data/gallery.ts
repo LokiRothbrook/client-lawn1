@@ -81,17 +81,12 @@ export interface GalleryItem {
  */
 export const galleryItems: GalleryItem[] = [
   { id: 1, title: "Backyard Transformation", category: "Residential", image: "/gallery/backyard-transform.jpeg", description: "Complete lawn renovation including aeration, overseeding, and fertilization program" },
-  { id: 2, title: "Office Complex Grounds", category: "Commercial", image: "/gallery/project-2.svg", description: "Weekly maintenance program for a 5-acre corporate campus" },
-  { id: 3, title: "Front Yard Makeover", category: "Residential", image: "/gallery/project-3.svg", description: "Weed control and lawn restoration for a neglected front lawn" },
-  { id: 4, title: "Fall Cleanup Project", category: "Seasonal", image: "/gallery/project-4.svg", description: "Complete leaf removal and winterization for a large estate" },
-  { id: 5, title: "HOA Common Areas", category: "Commercial", image: "/gallery/project-5.svg", description: "Year-round maintenance for community common areas and entrances" },
-  { id: 6, title: "New Construction Lawn", category: "Residential", image: "/gallery/project-6.svg", description: "Seeding and establishment program for newly built home" },
-  { id: 7, title: "Spring Revival", category: "Seasonal", image: "/gallery/project-7.svg", description: "Spring cleanup, dethatching, and first fertilizer application" },
-  { id: 8, title: "Retail Center Landscaping", category: "Commercial", image: "/gallery/project-8.svg", description: "Weekly mowing and trimming for busy shopping center" },
-  { id: 9, title: "Corner Lot Renovation", category: "Residential", image: "/gallery/project-9.svg", description: "Addressing drainage issues and establishing healthy turf" },
-  { id: 10, title: "Hedge & Shrub Shaping", category: "Seasonal", image: "/gallery/project-10.svg", description: "Professional trimming and shaping of overgrown hedges" },
-  { id: 11, title: "Church Grounds", category: "Commercial", image: "/gallery/project-11.svg", description: "Complete lawn care program for local church property" },
-  { id: 12, title: "Luxury Home Estate", category: "Residential", image: "/gallery/project-12.svg", description: "Premium lawn care service for 2-acre residential estate" }
+  { id: 2, title: "Business Grounds", category: "Commercial", image: "/gallery/business-grounds.jpeg", description: "Weekly maintenance program for a 5-acre business campus" },
+  { id: 3, title: "Front Yard Makeover", category: "Residential", image: "/gallery/front-yard-makeover.jpeg", description: "Weed control and lawn restoration for a neglected front lawn" },
+  { id: 4, title: "Fall Cleanup Project", category: "Seasonal", image: "/gallery/fall-cleanup.jpeg", description: "Complete leaf removal and winterization for a large estate" },
+  { id: 5, title: "Large Yard", category: "Residential", image: "/gallery/large-yard.jpeg", description: "Large Yard management and cleanup" },
+  { id: 6, title: "Business Maintenance", category: "Commercial", image: "/gallery/business.jpeg", description: "Maintaining look and keeping it clean" },
+  { id: 7, title: "Spring Revival", category: "Commercial", image: "/gallery/business-grounds-2.jpeg", description: "Spring cleanup, dethatching, and first fertilizer application" },
 ]
 
 // ============================================================================
