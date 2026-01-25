@@ -258,10 +258,7 @@ export const callToActionSectionContent = {
  *   within or near the hero section.
  */
 export const heroSectionContent = {
-  title: {
-    line1: "Professional",
-    line2: "Lawn Care"
-  },
+
   subtitle: "Transform your outdoor space with our expert lawn care services. From weekly mowing to complete landscape maintenance, we keep your lawn looking its best all season long.",
   buttons: {
     primary: {

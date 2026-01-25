@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Leaf } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import { heroSectionContent } from "@/lib/data"
 
 interface ParticleStyle {
@@ -141,8 +142,14 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }} // Animation properties
             className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
           >
-            <span className="block gradient-text">{heroSectionContent.title.line1}</span>
-            <span className="block gradient-text">{heroSectionContent.title.line2}</span>
+            <Image
+              src="/branding/logo-transparent.png"
+              alt="Cale's Lawncare Logo"
+              width={500} // Increased width for better quality on larger screens
+              height={300} // Increased height for better quality on larger screens
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto h-auto"
+              priority
+            />
           </motion.h1>
 
           <motion.p
