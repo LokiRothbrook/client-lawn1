@@ -115,15 +115,22 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-6">{footerContent.columns.quickLinks.title}</h3>
             <ul className="space-y-3">
-              {footerContent.columns.quickLinks.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+              {footerContent.columns.quickLinks.links
+                .filter(link => {
+                  if (link.href === '/pricing') return siteConfig.pages.pricing.enabled;
+                  if (link.href === '/gallery') return siteConfig.pages.gallery.enabled;
+                  if (link.href === '/faq') return siteConfig.pages.faq.enabled;
+                  return true;
+                })
+                .map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
               ))}
             </ul>
           </div>

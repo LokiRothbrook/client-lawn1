@@ -88,7 +88,7 @@ export const siteConfig = {
       enabled: true,
     },
     pricing: {
-      enabled: true,
+      enabled: false,
       showIndividualServicesPricing: true, // New toggle for individual services pricing section
     },
     faq: {

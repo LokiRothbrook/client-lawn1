@@ -80,7 +80,7 @@ export interface GalleryItem {
  *   You can use different categories to allow for filtering in the gallery page.
  */
 export const galleryItems: GalleryItem[] = [
-  { id: 1, title: "Backyard Transformation", category: "Residential", image: "/gallery/project-1.svg", description: "Complete lawn renovation including aeration, overseeding, and fertilization program" },
+  { id: 1, title: "Backyard Transformation", category: "Residential", image: "/gallery/backyard-transform.jpeg", description: "Complete lawn renovation including aeration, overseeding, and fertilization program" },
   { id: 2, title: "Office Complex Grounds", category: "Commercial", image: "/gallery/project-2.svg", description: "Weekly maintenance program for a 5-acre corporate campus" },
   { id: 3, title: "Front Yard Makeover", category: "Residential", image: "/gallery/project-3.svg", description: "Weed control and lawn restoration for a neglected front lawn" },
   { id: 4, title: "Fall Cleanup Project", category: "Seasonal", image: "/gallery/project-4.svg", description: "Complete leaf removal and winterization for a large estate" },
