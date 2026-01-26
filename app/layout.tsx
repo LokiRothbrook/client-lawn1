@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 
   title: {
     // The default title for the site (used on the homepage).
-    default: `${companyInfo.name} | Professional Services`,
+    default: `${companyInfo.name} | Professional LawnCare Services`,
     // A template for child pages. `%s` will be replaced by the page's specific title.
     template: `%s | ${companyInfo.name}`,
   },
@@ -87,11 +87,51 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Structured data for LocalBusiness
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Cale's Lawncare",
+    "description": "Professional lawn care services in Macomb and Rushville areas. From weekly mowing to complete landscape maintenance, we keep your lawn looking its best all season long.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Macomb",
+      "addressRegion": "IL",
+      "postalCode": "61455",
+      "streetAddress": "Serving Macomb and Rushville areas"
+    },
+    "telephone": "(309) 333-7599",
+    "email": "cale.dylan@gmail.com",
+    "openingHours": [
+      "Mo-Sa 07:00-19:00",
+      "Su 09:00-17:00"
+    ],
+    "priceRange": "$35-$125",
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "Macomb, IL"
+      },
+      {
+        "@type": "Place",
+        "name": "Rushville, IL"
+      }
+    ],
+    "serviceArea": "Macomb and Rushville, IL",
+    "sameAs": [
+      "https://www.facebook.com/share/16umqNcTWq/?mibextid=wwXIfr"
+    ]
+  };
+
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         {children}
         <Analytics />
       </body>

@@ -7,12 +7,12 @@ import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ArrowRight, Eye, X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react"
 import { galleryItems, showcaseSectionContent } from "@/lib/data"
 import { Button } from "@/components/ui/button"
+import { Lightbox } from "@/components/lightbox" // Import the new Lightbox component
 
 export function ShowcaseSection() {
   const ref = React.useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [selectedImage, setSelectedImage] = React.useState<typeof galleryItems[0] | null>(null)
-  const [isLoadingImage, setIsLoadingImage] = React.useState(false)
 
   // Take first 6 items for the showcase
   const showcaseItems = galleryItems.slice(0, 6)
@@ -21,14 +21,12 @@ export function ShowcaseSection() {
 
   const handlePrev = React.useCallback(() => {
     if (currentIndex > 0) {
-      setIsLoadingImage(true)
       setSelectedImage(showcaseItems[currentIndex - 1])
     }
   }, [currentIndex, showcaseItems])
 
   const handleNext = React.useCallback(() => {
     if (currentIndex < showcaseItems.length - 1) {
-      setIsLoadingImage(true)
       setSelectedImage(showcaseItems[currentIndex + 1])
     }
   }, [currentIndex, showcaseItems])
@@ -43,13 +41,6 @@ export function ShowcaseSection() {
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [selectedImage, handlePrev, handleNext])
-
-  // Reset loading state when selectedImage changes
-  React.useEffect(() => {
-    if (selectedImage) {
-      setIsLoadingImage(true)
-    }
-  }, [selectedImage])
 
   return (
     <section id="showcase" className="relative py-24 overflow-hidden">
@@ -97,7 +88,7 @@ export function ShowcaseSection() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 className={`${sizes[index]} relative group cursor-pointer`}
-                onClick={() => { setSelectedImage(item); setIsLoadingImage(true); }}
+                onClick={() => { setSelectedImage(item); }}
               >
                 <div className="absolute inset-0 rounded-2xl overflow-hidden glass-card">
                   {/* Project Image */}
@@ -178,82 +169,15 @@ export function ShowcaseSection() {
       </div>
 
       {/* Lightbox */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            {/* Close Button */}
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 w-12 h-12 rounded-full glass hover:bg-primary/20 flex items-center justify-center transition-colors"
-            >
-              <X className="w-6 h-6 text-foreground" />
-            </button>
-
-            {/* Navigation */}
-            {currentIndex > 0 && (
-              <button
-                onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass hover:bg-primary/20 flex items-center justify-center transition-colors"
-              >
-                <ChevronLeft className="w-6 h-6 text-foreground" />
-              </button>
-            )}
-            {currentIndex < showcaseItems.length - 1 && (
-              <button
-                onClick={(e) => { e.stopPropagation(); handleNext(); }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass hover:bg-primary/20 flex items-center justify-center transition-colors"
-              >
-                <ChevronRight className="w-6 h-6 text-foreground" />
-              </button>
-            )}
-
-            {/* Image Content */}
-            <motion.div
-              key={selectedImage.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="max-w-5xl w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative aspect-video rounded-2xl overflow-hidden glass-card mb-6 flex items-center justify-center">
-                {isLoadingImage && (
-                  <Loader2 className="w-12 h-12 text-primary animate-spin" />
-                )}
-                <Image
-                  src={selectedImage.image}
-                  alt={selectedImage.title}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 1280px) 100vw, 1280px"
-                  priority
-                  onLoad={() => setIsLoadingImage(false)}
-                  style={{ opacity: isLoadingImage ? 0 : 1, transition: 'opacity 0.3s ease-in-out' }}
-                />
-              </div>
-
-              <div className="text-center">
-                <h2 className="text-foreground text-2xl font-bold mb-2">{selectedImage.title}</h2>
-                <p className="text-muted-foreground mb-2">{selectedImage.description}</p>
-                <span className="inline-block px-4 py-1.5 rounded-full glass text-primary text-sm">
-                  {selectedImage.category}
-                </span>
-              </div>
-
-              {/* Counter */}
-              <div className="text-center mt-6 text-muted-foreground text-sm">
-                {currentIndex + 1} / {showcaseItems.length}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Lightbox
+        images={showcaseItems}
+        selectedImage={selectedImage}
+        onClose={() => setSelectedImage(null)}
+        onPrev={handlePrev}
+        onNext={handleNext}
+        currentIndex={currentIndex}
+        totalImages={showcaseItems.length}
+      />
     </section>
   )
 }
