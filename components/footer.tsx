@@ -17,6 +17,14 @@ import { services, companyInfo, footerContent, siteConfig } from "@/lib/data"
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
+  // Define social media platforms and their corresponding Lucide icons
+  const socialPlatforms = [
+    { id: 'facebook', Icon: Facebook },
+    { id: 'instagram', Icon: Instagram },
+    { id: 'x', Icon: XIcon },
+    { id: 'youtube', Icon: Youtube },
+  ];
+
   return (
     <footer className="relative bg-card overflow-hidden">
       {/* Decorative Top Border */}
@@ -47,42 +55,25 @@ export function Footer() {
               {companyInfo.tagline}. {footerContent.taglineSuffix}
             </p>
             <div className="flex gap-3">
-              <motion.a
-                href={companyInfo.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href={companyInfo.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href={companyInfo.social.x}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-              >
-                <XIcon className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href={companyInfo.social.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-              >
-                <Youtube className="w-5 h-5" />
-              </motion.a>
+              {socialPlatforms.map((platform) => {
+                const socialData = siteConfig.socialMedia[platform.id as keyof typeof siteConfig.socialMedia];
+                if (socialData && socialData.enabled) {
+                  const IconComponent = platform.Icon;
+                  return (
+                    <motion.a
+                      key={platform.id}
+                      href={socialData.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      <IconComponent className="w-5 h-5" />
+                    </motion.a>
+                  );
+                }
+                return null;
+              })}
             </div>
           </div>
 

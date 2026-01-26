@@ -195,15 +195,15 @@ export function ContactSection() {
               className="mt-8 aspect-video rounded-2xl glass-card overflow-hidden relative"
             >
               <Image
-                src="/service-area.svg"
+                src="/branding/service-area.png"
                 alt={`${companyInfo.name} service area map`}
                 fill
-                className="object-cover"
+                className="object-fill"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
               {/* Overlay with service area label */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-4">
-                <p className="text-sm text-muted-foreground px-4 text-center">{contactSectionContent.contactInfo.mapPlaceholder}</p>
+              <div className="absolute inset-0 flex items-end justify-center pb-4">
+                <p className="text-sm text-muted-foreground px-4 text-center">Serving Macomb, Rushville, And the surrounding area.</p>
               </div>
             </motion.div>
           </motion.div>

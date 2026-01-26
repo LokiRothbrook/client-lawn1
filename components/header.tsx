@@ -92,12 +92,19 @@ export function Header() {
     return true
   })
 
-  const socialLinks = [
-    { href: companyInfo.social.facebook, icon: Facebook, label: "Facebook" },
-    { href: companyInfo.social.instagram, icon: Instagram, label: "Instagram" },
-    { href: companyInfo.social.x, icon: XIcon, label: "X" },
-    { href: companyInfo.social.youtube, icon: Youtube, label: "YouTube" },
-  ]
+  const socialLinks = [];
+  if (siteConfig.socialMedia.facebook.enabled) {
+    socialLinks.push({ href: siteConfig.socialMedia.facebook.href, icon: Facebook, label: "Facebook" });
+  }
+  if (siteConfig.socialMedia.instagram.enabled) {
+    socialLinks.push({ href: siteConfig.socialMedia.instagram.href, icon: Instagram, label: "Instagram" });
+  }
+  if (siteConfig.socialMedia.x.enabled) {
+    socialLinks.push({ href: siteConfig.socialMedia.x.href, icon: XIcon, label: "X" });
+  }
+  if (siteConfig.socialMedia.youtube.enabled) {
+    socialLinks.push({ href: siteConfig.socialMedia.youtube.href, icon: Youtube, label: "YouTube" });
+  }
 
   return (
     <header

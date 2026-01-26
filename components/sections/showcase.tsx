@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, useInView, AnimatePresence } from "framer-motion"
-import { ArrowRight, Eye, X, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowRight, Eye, X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react"
 import { galleryItems, showcaseSectionContent } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 
@@ -12,6 +12,7 @@ export function ShowcaseSection() {
   const ref = React.useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [selectedImage, setSelectedImage] = React.useState<typeof galleryItems[0] | null>(null)
+  const [isLoadingImage, setIsLoadingImage] = React.useState(false)
 
   // Take first 6 items for the showcase
   const showcaseItems = galleryItems.slice(0, 6)
@@ -20,12 +21,14 @@ export function ShowcaseSection() {
 
   const handlePrev = React.useCallback(() => {
     if (currentIndex > 0) {
+      setIsLoadingImage(true)
       setSelectedImage(showcaseItems[currentIndex - 1])
     }
   }, [currentIndex, showcaseItems])
 
   const handleNext = React.useCallback(() => {
     if (currentIndex < showcaseItems.length - 1) {
+      setIsLoadingImage(true)
       setSelectedImage(showcaseItems[currentIndex + 1])
     }
   }, [currentIndex, showcaseItems])
@@ -40,6 +43,13 @@ export function ShowcaseSection() {
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [selectedImage, handlePrev, handleNext])
+
+  // Reset loading state when selectedImage changes
+  React.useEffect(() => {
+    if (selectedImage) {
+      setIsLoadingImage(true)
+    }
+  }, [selectedImage])
 
   return (
     <section id="showcase" className="relative py-24 overflow-hidden">
@@ -87,7 +97,7 @@ export function ShowcaseSection() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 className={`${sizes[index]} relative group cursor-pointer`}
-                onClick={() => setSelectedImage(item)}
+                onClick={() => { setSelectedImage(item); setIsLoadingImage(true); }}
               >
                 <div className="absolute inset-0 rounded-2xl overflow-hidden glass-card">
                   {/* Project Image */}
@@ -135,12 +145,11 @@ export function ShowcaseSection() {
                     <motion.div
                       className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
                     >
-                      <h3 className="text-foreground text-lg sm:text-xl font-bold mb-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">
-                        {item.description}
-                      </p>
+                      <div className="bg-white/80 py-2 px-4 rounded-lg w-fit">
+                        <h3 className="text-primary text-lg sm:text-xl font-bold">
+                          {item.title}
+                        </h3>
+                      </div>
                     </motion.div>
                   </div>
 
@@ -213,7 +222,10 @@ export function ShowcaseSection() {
               className="max-w-5xl w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative aspect-video rounded-2xl overflow-hidden glass-card mb-6">
+              <div className="relative aspect-video rounded-2xl overflow-hidden glass-card mb-6 flex items-center justify-center">
+                {isLoadingImage && (
+                  <Loader2 className="w-12 h-12 text-primary animate-spin" />
+                )}
                 <Image
                   src={selectedImage.image}
                   alt={selectedImage.title}
@@ -221,6 +233,8 @@ export function ShowcaseSection() {
                   className="object-contain"
                   sizes="(max-width: 1280px) 100vw, 1280px"
                   priority
+                  onLoad={() => setIsLoadingImage(false)}
+                  style={{ opacity: isLoadingImage ? 0 : 1, transition: 'opacity 0.3s ease-in-out' }}
                 />
               </div>
 

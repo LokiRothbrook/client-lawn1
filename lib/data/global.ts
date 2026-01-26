@@ -54,12 +54,6 @@ export const companyInfo = {
   email: "cale.dylan@gmail.com",
   address: "456 Garden Way, Springfield, IL 62701",
   hours: "Mon-Sat: 7AM-7PM | Sun: 9AM-5PM",
-  social: {
-    facebook: "https://facebook.com/greenscapelawncare",
-    instagram: "https://instagram.com/greenscapelawncare",
-    x: "https://x.com/greenscapelawn",
-    youtube: "https://youtube.com/@greenscapelawncare"
-  }
 };
 
 // ============================================================================
@@ -109,10 +103,29 @@ export const siteConfig = {
       enabled: true,
     },
     testimonials: {
-      enabled: true,
+      enabled: false,
     },
     contact: {
       enabled: true,
+    },
+  },
+  // Social Media Configuration
+  socialMedia: {
+    facebook: {
+      enabled: true,
+      href: "https://www.facebook.com/share/16umqNcTWq/?mibextid=wwXIfr",
+    },
+    instagram: {
+      enabled: false,
+      href: "https://instagram.com/greenscapelawncare",
+    },
+    x: {
+      enabled: false,
+      href: "https://x.com/greenscapelawn",
+    },
+    youtube: {
+      enabled: false,
+      href: "https://youtube.com/@greenscapelawncare",
     },
   },
   // Header and footer display toggles
