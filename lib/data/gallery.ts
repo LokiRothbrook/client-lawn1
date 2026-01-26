@@ -80,18 +80,24 @@ export interface GalleryItem {
  *   You can use different categories to allow for filtering in the gallery page.
  */
 export const galleryItems: GalleryItem[] = [
-  { id: 1, title: "Backyard Transformation", category: "Residential", image: "/gallery/project-1.svg", description: "Complete lawn renovation including aeration, overseeding, and fertilization program" },
-  { id: 2, title: "Office Complex Grounds", category: "Commercial", image: "/gallery/project-2.svg", description: "Weekly maintenance program for a 5-acre corporate campus" },
-  { id: 3, title: "Front Yard Makeover", category: "Residential", image: "/gallery/project-3.svg", description: "Weed control and lawn restoration for a neglected front lawn" },
-  { id: 4, title: "Fall Cleanup Project", category: "Seasonal", image: "/gallery/project-4.svg", description: "Complete leaf removal and winterization for a large estate" },
-  { id: 5, title: "HOA Common Areas", category: "Commercial", image: "/gallery/project-5.svg", description: "Year-round maintenance for community common areas and entrances" },
-  { id: 6, title: "New Construction Lawn", category: "Residential", image: "/gallery/project-6.svg", description: "Seeding and establishment program for newly built home" },
-  { id: 7, title: "Spring Revival", category: "Seasonal", image: "/gallery/project-7.svg", description: "Spring cleanup, dethatching, and first fertilizer application" },
-  { id: 8, title: "Retail Center Landscaping", category: "Commercial", image: "/gallery/project-8.svg", description: "Weekly mowing and trimming for busy shopping center" },
-  { id: 9, title: "Corner Lot Renovation", category: "Residential", image: "/gallery/project-9.svg", description: "Addressing drainage issues and establishing healthy turf" },
-  { id: 10, title: "Hedge & Shrub Shaping", category: "Seasonal", image: "/gallery/project-10.svg", description: "Professional trimming and shaping of overgrown hedges" },
-  { id: 11, title: "Church Grounds", category: "Commercial", image: "/gallery/project-11.svg", description: "Complete lawn care program for local church property" },
-  { id: 12, title: "Luxury Home Estate", category: "Residential", image: "/gallery/project-12.svg", description: "Premium lawn care service for 2-acre residential estate" }
+  { id: 1, title: "Backyard Transformation", category: "Residential", image: "/gallery/backyard-transform.jpeg", description: "Complete lawn renovation including aeration, overseeding, and fertilization program" },
+  { id: 8, title: "Precision Edging Project 1", category: "Edging", image: "/gallery/edging-1.jpg", description: "Clean and sharp edges for a pristine lawn look." },
+  { id: 2, title: "Business Grounds", category: "Commercial", image: "/gallery/business-grounds.jpeg", description: "Weekly maintenance program for a 5-acre business campus" },
+  { id: 12, title: "Expert Hedge Trimming", category: "Hedge", image: "/gallery/hedge-1.jpg", description: "Neatly trimmed hedges for a manicured garden." },
+  { id: 3, title: "Front Yard Makeover", category: "Residential", image: "/gallery/front-yard-makeover.jpeg", description: "Weed control and lawn restoration for a neglected front lawn" },
+  { id: 13, title: "Residential Yard Care 1", category: "Residential", image: "/gallery/yard-1.jpg", description: "Comprehensive care for a beautiful home lawn." },
+  { id: 4, title: "Fall Cleanup Project", category: "Seasonal", image: "/gallery/fall-cleanup.jpeg", description: "Complete leaf removal and winterization for a large estate" },
+  { id: 9, title: "Precision Edging Project 2", category: "Edging", image: "/gallery/edging-2.jpg", description: "Defined borders for flowerbeds and walkways." },
+  { id: 5, title: "Large Yard", category: "Residential", image: "/gallery/large-yard.jpeg", description: "Large Yard management and cleanup" },
+  { id: 14, title: "Residential Yard Care 2", category: "Residential", image: "/gallery/yard-2.jpg", description: "Lawn health and aesthetic improvement for residences." },
+  { id: 6, title: "Business Maintenance", category: "Commercial", image: "/gallery/business.jpeg", description: "Maintaining look and keeping it clean" },
+  { id: 10, title: "Precision Edging Project 3", category: "Edging", image: "/gallery/edging-3.jpg", description: "Enhancing landscape features with professional edging." },
+  { id: 7, title: "Spring Revival", category: "Commercial", image: "/gallery/business-grounds-2.jpeg", description: "Spring cleanup, dethatching, and first fertilizer application" },
+  { id: 15, title: "Residential Yard Care 3", category: "Residential", image: "/gallery/yard-3.jpg", description: "Maintaining lush green spaces for homeowners." },
+  { id: 11, title: "Precision Edging Project 4", category: "Edging", image: "/gallery/edging-4.jpg", description: "Creating elegant lines around property boundaries." },
+  { id: 16, title: "Residential Yard Care 4", category: "Residential", image: "/gallery/yard-4.jpg", description: "Tailored services to keep residential lawns pristine." },
+  { id: 17, title: "Residential Yard Care 5", category: "Residential", image: "/gallery/yard-5.jpg", description: "Dedicated attention to residential garden and lawn areas." },
+  { id: 18, title: "Residential Yard Care 6", category: "Residential", image: "/gallery/yard-6.jpg", description: "Ensuring vibrant and healthy residential outdoor spaces." },
 ]
 
 // ============================================================================

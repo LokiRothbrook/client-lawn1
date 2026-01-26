@@ -17,7 +17,6 @@ import {
   Navigation,
   Leaf,
 } from "lucide-react"
-import { getIcon } from "@/lib/icon-map"
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -93,12 +92,19 @@ export function Header() {
     return true
   })
 
-  const socialLinks = [
-    { href: companyInfo.social.facebook, icon: Facebook, label: "Facebook" },
-    { href: companyInfo.social.instagram, icon: Instagram, label: "Instagram" },
-    { href: companyInfo.social.x, icon: XIcon, label: "X" },
-    { href: companyInfo.social.youtube, icon: Youtube, label: "YouTube" },
-  ]
+  const socialLinks = [];
+  if (siteConfig.socialMedia.facebook.enabled) {
+    socialLinks.push({ href: siteConfig.socialMedia.facebook.href, icon: Facebook, label: "Facebook" });
+  }
+  if (siteConfig.socialMedia.instagram.enabled) {
+    socialLinks.push({ href: siteConfig.socialMedia.instagram.href, icon: Instagram, label: "Instagram" });
+  }
+  if (siteConfig.socialMedia.x.enabled) {
+    socialLinks.push({ href: siteConfig.socialMedia.x.href, icon: XIcon, label: "X" });
+  }
+  if (siteConfig.socialMedia.youtube.enabled) {
+    socialLinks.push({ href: siteConfig.socialMedia.youtube.href, icon: Youtube, label: "YouTube" });
+  }
 
   return (
     <header
@@ -111,21 +117,23 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/#" className="flex items-center gap-2 group">
+          <Link href="/#" className="flex items-center group flex-shrink-0">
             <motion.div
               className="relative"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center glow-blue">
-                <Leaf className="w-6 h-6 text-primary-foreground" />
+              <div className="flex-shrink-0 flex items-center justify-center">
+                <Image
+                  src="/branding/logo-transparent-header.png"
+                  alt={`${companyInfo.name} Logo`}
+                  width={200}
+                  height={200}
+                  className="object-contain w-auto h-auto flex-shrink-0"
+                />
               </div>
               <div className="absolute inset-0 rounded-xl bg-primary/30 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
-            <span className="text-xl font-bold whitespace-nowrap">
-              <span className="gradient-text">{companyInfo.name.split(" ")[0]}</span>
-              <span className="text-foreground"> {companyInfo.name.split(" ").slice(1).join(" ")}</span>
-            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -182,7 +190,6 @@ export function Header() {
                         </div>
                         <div className="grid grid-cols-2 gap-3">
                           {services.map((service, index) => {
-                            const ServiceIcon = getIcon(service.iconName)
                             return (
                               <motion.div
                                 key={service.id}
@@ -195,8 +202,14 @@ export function Header() {
                                   onClick={() => setIsServicesOpen(false)}
                                   className="group flex items-start gap-3 p-3 rounded-xl hover:bg-primary/5 transition-all border border-transparent hover:border-primary/20"
                                 >
-                                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
-                                    {ServiceIcon && <ServiceIcon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />}
+                                  <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center group-hover:scale-110 transition-all">
+                                    <Image
+                                      src={service.image}
+                                      alt={service.title}
+                                      width={40}
+                                      height={40}
+                                      className="object-cover"
+                                    />
                                   </div>
                                   <div className="flex-1 min-w-0">
                                     <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
@@ -221,89 +234,95 @@ export function Header() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-1 sm:gap-3">
+            {siteConfig.showPhoneNumber && (
+              <>
+                {/* Divider */}
+                <div className="hidden md:block w-px h-8 bg-border" />
 
-
-            {/* Divider */}
-            <div className="hidden md:block w-px h-8 bg-border" />
-
-            {/* Phone Button */}
-            <motion.a
-              href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
-              className="flex items-center gap-2 px-2 sm:px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all group whitespace-nowrap"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.div
-                animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
-              >
-                <Phone className="w-4 h-4" />
-              </motion.div>
-              <span className="text-sm font-medium hidden lg:inline">{companyInfo.phone}</span>
-            </motion.a>
+                {/* Phone Button */}
+                <motion.a
+                  href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
+                  className="flex items-center gap-2 px-2 sm:px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all group whitespace-nowrap"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <motion.div
+                    animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
+                    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
+                  >
+                    <Phone className="w-4 h-4" />
+                  </motion.div>
+                  <span className="text-sm font-medium hidden lg:inline">{companyInfo.phone}</span>
+                </motion.a>
+              </>
+            )}
 
             {/* Location Button with Dropdown */}
-            <div ref={locationRef} className="relative hidden sm:block">
-              <motion.button
-                onClick={() => setIsLocationOpen(!isLocationOpen)}
-                className={cn(
-                  "relative w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 overflow-hidden",
-                  isLocationOpen && "bg-primary text-primary-foreground"
-                )}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Get Directions"
-              >
-                <MapPin className="w-4 h-4 relative z-10" />
-              </motion.button>
+            {siteConfig.showMapIcon && (
+              <div ref={locationRef} className="relative hidden sm:block">
+                <motion.button
+                  onClick={() => setIsLocationOpen(!isLocationOpen)}
+                  className={cn(
+                    "relative w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 overflow-hidden",
+                    isLocationOpen && "bg-primary text-primary-foreground"
+                  )}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Get Directions"
+                >
+                  <MapPin className="w-4 h-4 relative z-10" />
+                </motion.button>
 
-              <AnimatePresence>
-                {isLocationOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-2 w-72 p-4 rounded-2xl glass-card shadow-2xl backdrop-blur-xl bg-card/80"
-                  >
-                    <div className="absolute -top-3 right-4 w-6 h-6 rotate-45 bg-card border-l border-t border-border" />
-                    <div className="relative">
-                      <h3 className="text-sm font-semibold mb-3">{headerContent.locationDropdown.title}</h3>
+                <AnimatePresence>
+                  {isLocationOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full right-0 mt-2 w-72 p-4 rounded-2xl glass-card shadow-2xl backdrop-blur-xl bg-card/80"
+                    >
+                      <div className="absolute -top-3 right-4 w-6 h-6 rotate-45 bg-card border-l border-t border-border" />
+                      <div className="relative">
+                        <h3 className="text-sm font-semibold mb-3">{headerContent.locationDropdown.title}</h3>
 
-                      {/* Map Preview */}
-                      <div className="aspect-video rounded-xl bg-primary/5 border border-border overflow-hidden relative mb-3">
-                        <Image
-                          src="/map-preview.svg"
-                          alt={`Map showing ${companyInfo.name} location`}
-                          fill
-                          className="object-cover"
-                          sizes="288px"
-                        />
-                        {/* Overlay with address */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-2">
-                          <p className="text-xs text-muted-foreground px-2 text-center">{companyInfo.address}</p>
+                        {/* Map Preview */}
+                        <div className="aspect-video rounded-xl bg-primary/5 border border-border overflow-hidden relative mb-3">
+                          <Image
+                            src="/map-preview.svg"
+                            alt={`Map showing ${companyInfo.name} location`}
+                            fill
+                            className="object-cover"
+                            sizes="288px"
+                          />
+                          {/* Overlay with address */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end justify-center pb-2">
+                            <p className="text-xs text-muted-foreground px-2 text-center">{companyInfo.address}</p>
+                          </div>
                         </div>
-                      </div>
 
-                      <Button asChild className="w-full glow-blue" size="sm">
-                        <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
-                          <Navigation className="w-4 h-4 mr-2" />
-                          {headerContent.locationDropdown.buttonText}
-                        </a>
-                      </Button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                        <Button asChild className="w-full glow-blue" size="sm">
+                          <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+                            <Navigation className="w-4 h-4 mr-2" />
+                            {headerContent.locationDropdown.buttonText}
+                          </a>
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
 
             {/* CTA Button */}
-            <Button asChild size="sm" className="glow-blue text-xs sm:text-sm px-2 sm:px-4 whitespace-nowrap">
-              <Link href="/#contact">
-                <span className="hidden sm:inline">{headerContent.ctaButton.desktop}</span>
-                <span className="sm:hidden">{headerContent.ctaButton.mobile}</span>
-              </Link>
-            </Button>
+            {siteConfig.showGetFreeQuoteButton && (
+              <Button asChild size="sm" className="glow-blue text-xs sm:text-sm px-2 sm:px-4 whitespace-nowrap">
+                <Link href="/#contact">
+                  <span className="hidden sm:inline">{headerContent.ctaButton.desktop}</span>
+                  <span className="sm:hidden">{headerContent.ctaButton.mobile}</span>
+                </Link>
+              </Button>
+            )}
 
             {/* Mobile Menu Toggle */}
             <button
@@ -343,21 +362,27 @@ export function Header() {
                           {headerContent.mobileMenu.services}
                         </Link>
                         <div className="pl-3 space-y-0.5">
-                          {services.map((service) => {
-                            const ServiceIcon = getIcon(service.iconName)
-                            return (
-                              <Link
-                                key={service.id}
-                                href={`/services/${service.id}`}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
-                              >
-                                {ServiceIcon && <ServiceIcon className="w-3.5 h-3.5" />}
-                                {service.title}
-                              </Link>
-                            )
-                          })}
-                        </div>
+                                                      {services.map((service) => {
+                                                      return (
+                                                        <Link
+                                                          key={service.id}
+                                                          href={`/services/${service.id}`}
+                                                          onClick={() => setIsMobileMenuOpen(false)}
+                                                          className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                                        >
+                                                          <div className="flex-shrink-0 w-6 h-6 rounded-md overflow-hidden">
+                                                            <Image
+                                                              src={service.image}
+                                                              alt={service.title}
+                                                              width={24}
+                                                              height={24}
+                                                              className="object-cover"
+                                                            />
+                                                          </div>
+                                                          {service.title}
+                                                        </Link>
+                                                      )
+                                                    })}                        </div>
                       </div>
                     ) : (
                       <Link
@@ -379,25 +404,31 @@ export function Header() {
                 </div>
 
                 <div className="pt-3 border-t border-border space-y-2">
-                  <a
-                    href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
-                    className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span className="font-medium">{companyInfo.phone}</span>
-                  </a>
-                  <a
-                    href={googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
-                  >
-                    <Navigation className="w-4 h-4" />
-                    <span className="font-medium">{headerContent.mobileMenu.getDirections}</span>
-                  </a>
-                  <Button asChild className="w-full glow-blue" size="sm">
-                    <Link href="/#contact">{headerContent.mobileMenu.getQuote}</Link>
-                  </Button>
+                  {siteConfig.showPhoneNumber && (
+                    <a
+                      href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
+                      className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span className="font-medium">{companyInfo.phone}</span>
+                    </a>
+                  )}
+                  {siteConfig.showMapIcon && (
+                    <a
+                      href={googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
+                    >
+                      <Navigation className="w-4 h-4" />
+                      <span className="font-medium">{headerContent.mobileMenu.getDirections}</span>
+                    </a>
+                  )}
+                  {siteConfig.showGetFreeQuoteButton && (
+                    <Button asChild className="w-full glow-blue" size="sm">
+                      <Link href="/#contact">{headerContent.mobileMenu.getQuote}</Link>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

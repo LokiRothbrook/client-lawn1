@@ -53,17 +53,17 @@ export const faqData: FAQItem[] = [
   {
     question: "How do I get a quote for lawn care services?",
     answer:
-      "Getting a quote is easy! Simply fill out our contact form or call us at (555) LAWN-123. We'll schedule a free on-site assessment to measure your property and discuss your needs. You'll receive a detailed, no-obligation estimate within 24 hours.",
+      "Getting a quote is easy! Simply fill out our contact form or call us at (309) 333-7599. We'll schedule a free on-site assessment to measure your property and discuss your needs. You'll receive a detailed, no-obligation estimate within 24 hours.",
   },
   {
     question: "What areas do you serve?",
     answer:
-      "We serve Springfield and the surrounding communities within a 25-mile radius, including Chatham, Rochester, Sherman, and Williamsville. Contact us to confirm service availability in your area.",
+      "We serve Macomb, Rushville and the surrounding communities within a 30-mile radius, including Littleton, Augusta, and Camden. Contact us to confirm service availability in your area.",
   },
   {
-    question: "What makes GreenScape different from other lawn care companies?",
+    question: "What makes Cale's Lawncare different from other lawn care companies?",
     answer:
-      "We combine professional-grade equipment with certified lawn care expertise. Our team receives ongoing training in the latest techniques, and we use eco-friendly products whenever possible. Plus, we guarantee our work - if you're not satisfied, we'll make it right.",
+      "We combine professional-grade equipment with certified lawn care expertise. We use eco-friendly products whenever possible. Plus, we guarantee our work - if you're not satisfied, we'll make it right.",
   },
   {
     question: "When is the best time to aerate and overseed my lawn?",
@@ -71,17 +71,12 @@ export const faqData: FAQItem[] = [
       "For cool-season grasses common in Illinois, early fall (late August through September) is ideal for aeration and overseeding. The soil is still warm for seed germination, but cooler air temperatures reduce stress on new grass. Spring is a secondary option.",
   },
   {
-    question: "Are you licensed and insured?",
-    answer:
-      "Yes, GreenScape Lawn Care is fully licensed and insured. We carry general liability insurance and workers' compensation coverage, giving you complete peace of mind.",
-  },
-  {
     question: "Do you offer free estimates?",
     answer: "Absolutely! We provide free, no-obligation estimates for all our lawn care services. We'll visit your property, assess your lawn's needs, and provide a detailed quote."
   },
   {
     question: "What payment methods do you accept?",
-    answer: "We accept all major credit cards, checks, and ACH bank transfers. For recurring services, we offer convenient auto-pay options. Seasonal prepay discounts are also available."
+    answer: "We currently only accept cash and checks, However we are looking into expanding our payment options in the near future!"
   },
   {
     question: "Are your products safe for pets and children?",

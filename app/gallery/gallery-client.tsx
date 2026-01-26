@@ -3,7 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, ZoomIn, Loader2 } from "lucide-react"
 import { galleryItems } from "@/lib/data"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -15,6 +15,7 @@ const categories = ["All", ...Array.from(new Set(galleryItems.map(item => item.c
 export default function GalleryPageClient() {
   const [selectedCategory, setSelectedCategory] = React.useState("All")
   const [selectedImage, setSelectedImage] = React.useState<typeof galleryItems[0] | null>(null)
+  const [isLoadingImage, setIsLoadingImage] = React.useState(false) // New state for image loading
 
   // Memoize filtered items to prevent recalculation on every render
   const filteredItems = React.useMemo(
@@ -26,17 +27,19 @@ export default function GalleryPageClient() {
 
   const currentIndex = selectedImage ? filteredItems.findIndex(item => item.id === selectedImage.id) : -1
 
-  const handlePrev = () => {
+  const handlePrev = React.useCallback(() => {
     if (currentIndex > 0) {
+      setIsLoadingImage(true) // Set loading to true
       setSelectedImage(filteredItems[currentIndex - 1])
     }
-  }
+  }, [currentIndex, filteredItems])
 
-  const handleNext = () => {
+  const handleNext = React.useCallback(() => {
     if (currentIndex < filteredItems.length - 1) {
+      setIsLoadingImage(true) // Set loading to true
       setSelectedImage(filteredItems[currentIndex + 1])
     }
-  }
+  }, [currentIndex, filteredItems])
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -47,7 +50,14 @@ export default function GalleryPageClient() {
     }
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [selectedImage, currentIndex])
+  }, [selectedImage, handlePrev, handleNext])
+
+  // Reset loading state when selectedImage changes
+  React.useEffect(() => {
+    if (selectedImage) {
+      setIsLoadingImage(true)
+    }
+  }, [selectedImage])
 
   return (
     <>
@@ -218,8 +228,10 @@ export default function GalleryPageClient() {
                 className="max-w-5xl w-full"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative aspect-video rounded-2xl overflow-hidden glass-card mb-6">
-                  {/* Project Image */}
+                <div className="relative aspect-video rounded-2xl overflow-hidden glass-card mb-6 flex items-center justify-center">
+                  {isLoadingImage && (
+                    <Loader2 className="w-12 h-12 text-primary animate-spin" />
+                  )}
                   <Image
                     src={selectedImage.image}
                     alt={selectedImage.title}
@@ -227,6 +239,8 @@ export default function GalleryPageClient() {
                     className="object-contain"
                     sizes="(max-width: 1280px) 100vw, 1280px"
                     priority
+                    onLoad={() => setIsLoadingImage(false)}
+                    style={{ opacity: isLoadingImage ? 0 : 1, transition: 'opacity 0.3s ease-in-out' }}
                   />
                 </div>
 

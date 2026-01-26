@@ -5,7 +5,9 @@ import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Leaf } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import { heroSectionContent } from "@/lib/data"
+import { getIcon } from "@/lib/icon-map"
 
 interface ParticleStyle {
   left?: string;
@@ -141,8 +143,14 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }} // Animation properties
             className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
           >
-            <span className="block gradient-text">{heroSectionContent.title.line1}</span>
-            <span className="block gradient-text">{heroSectionContent.title.line2}</span>
+            <Image
+              src="/branding/logo-transparent.png"
+              alt="Cale's Lawncare Logo"
+              width={500} // Increased width for better quality on larger screens
+              height={300} // Increased height for better quality on larger screens
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto h-auto"
+              priority
+            />
           </motion.h1>
 
           <motion.p
@@ -175,20 +183,7 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
-          {/* Trust Badges - Displaying key assurances like "Fully Insured", "Licensed Pros". */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex items-center justify-center gap-8 mt-12 text-sm text-muted-foreground"
-          >
-            {heroSectionContent.trustBadges.map((badge, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <badge.icon className="w-5 h-5 text-primary" />
-                <span>{badge.text}</span>
-              </div>
-            ))}
-          </motion.div>
+
         </div>
 
         {/* Hero Cards Grid - Displays feature/service highlights in a grid layout. */}
@@ -225,7 +220,10 @@ export function HeroSection() {
                     flex items-center justify-center mb-6
                     group-hover:scale-110 transition-transform duration-300
                   `}>
-                    <card.icon className="w-7 h-7 text-primary" />
+                    {(() => {
+                      const Icon = getIcon(card.icon);
+                      return Icon ? <Icon className="w-7 h-7 text-primary" /> : null;
+                    })()}
                   </div>
 
                   {/* Card Title and Subtitle */}

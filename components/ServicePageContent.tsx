@@ -127,17 +127,7 @@ export function ServicePageContent({ service, prevService, nextService }: Servic
                 <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 p-8 relative overflow-hidden glass-card">
                   <Image src={service.image} alt={service.title} fill className="object-cover" />
 
-                  {/* Floating Elements */}
-                  <motion.div
-                    className="absolute top-8 right-8 px-4 py-2 rounded-xl glass shadow-lg"
-                    animate={{ y: [0, -5, 0], rotate: [0, 2, 0] }}
-                    transition={{ duration: 5, repeat: Infinity }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-primary" />
-                      <span className="font-medium">Licensed & Insured</span>
-                    </div>
-                  </motion.div>
+                  
 
                   <motion.div
                     className="absolute bottom-8 left-8 px-4 py-2 rounded-xl glass shadow-lg"

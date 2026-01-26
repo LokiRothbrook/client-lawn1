@@ -33,7 +33,7 @@
  *         Modify the title, subtitle, and button texts/links here.
  */
 
-import { Shield, Award, Clock, Sparkles } from "lucide-react"; // Only for hero trust badges
+
 
 // ============================================================================
 // Company Information
@@ -48,18 +48,12 @@ import { Shield, Award, Clock, Sparkles } from "lucide-react"; // Only for hero 
  * - Replace all placeholder strings with your actual business information.
  */
 export const companyInfo = {
-  name: "GreenScape Lawn Care",
+  name: "Cale's Lawncare",
   tagline: "Your Lawn, Our Passion",
-  phone: "(555) LAWN-123",
-  email: "info@greenscapelawncare.com",
+  phone: "(309) 333-7599",
+  email: "cale.dylan@gmail.com",
   address: "456 Garden Way, Springfield, IL 62701",
   hours: "Mon-Sat: 7AM-7PM | Sun: 9AM-5PM",
-  social: {
-    facebook: "https://facebook.com/greenscapelawncare",
-    instagram: "https://instagram.com/greenscapelawncare",
-    x: "https://x.com/greenscapelawn",
-    youtube: "https://youtube.com/@greenscapelawncare"
-  }
 };
 
 // ============================================================================
@@ -75,6 +69,9 @@ export const companyInfo = {
  * - Set `enabled: true` to show a page or section, or `false` to hide it.
  * - `showIndividualServicesPricing`: Toggle the display of the individual
  *   services pricing section on the pricing page.
+ * - `showPhoneNumber`: Toggle the display of the phone number in header and footer.
+ * - `showMapIcon`: Toggle the display of the map icon/directions in header and footer.
+ * - `showGetFreeQuoteButton`: Toggle the display of the get free quote button.
  */
 export const siteConfig = {
   pages: {
@@ -85,7 +82,7 @@ export const siteConfig = {
       enabled: true,
     },
     pricing: {
-      enabled: true,
+      enabled: false,
       showIndividualServicesPricing: true, // New toggle for individual services pricing section
     },
     faq: {
@@ -106,12 +103,35 @@ export const siteConfig = {
       enabled: true,
     },
     testimonials: {
-      enabled: true,
+      enabled: false,
     },
     contact: {
       enabled: true,
     },
   },
+  // Social Media Configuration
+  socialMedia: {
+    facebook: {
+      enabled: true,
+      href: "https://www.facebook.com/share/16umqNcTWq/?mibextid=wwXIfr",
+    },
+    instagram: {
+      enabled: false,
+      href: "https://instagram.com/greenscapelawncare",
+    },
+    x: {
+      enabled: false,
+      href: "https://x.com/greenscapelawn",
+    },
+    youtube: {
+      enabled: false,
+      href: "https://youtube.com/@greenscapelawncare",
+    },
+  },
+  // Header and footer display toggles
+  showPhoneNumber: true,
+  showMapIcon: false, // Set to false as requested
+  showGetFreeQuoteButton: true,
 };
 
 // ============================================================================
@@ -251,10 +271,7 @@ export const callToActionSectionContent = {
  *   within or near the hero section.
  */
 export const heroSectionContent = {
-  title: {
-    line1: "Professional",
-    line2: "Lawn Care"
-  },
+
   subtitle: "Transform your outdoor space with our expert lawn care services. From weekly mowing to complete landscape maintenance, we keep your lawn looking its best all season long.",
   buttons: {
     primary: {
@@ -266,20 +283,7 @@ export const heroSectionContent = {
       href: "/services"
     }
   },
-  trustBadges: [
-    {
-      icon: Shield,
-      text: "Fully Insured"
-    },
-    {
-      icon: Award,
-      text: "Licensed & Certified"
-    },
-    {
-      icon: Clock,
-      text: "Same Week Service"
-    }
-  ],
+
   heroCards: [
     {
       id: 1,
@@ -287,7 +291,7 @@ export const heroSectionContent = {
       subtitle: "For Homeowners",
       description: "Keep your lawn the envy of the neighborhood with our comprehensive residential lawn care packages tailored to your yard's unique needs.",
       cardClass: "hero-card-1",
-      icon: Sparkles,
+      icon: "Home",
       stats: "500+ Happy Homeowners",
       delay: 0,
     },
@@ -297,7 +301,7 @@ export const heroSectionContent = {
       subtitle: "For Businesses",
       description: "Make a great first impression with professionally maintained grounds. We serve offices, HOAs, retail centers, and more.",
       cardClass: "hero-card-2",
-      icon: Award,
+      icon: "Building",
       stats: "100+ Properties Maintained",
       delay: 0.1,
     },
@@ -307,7 +311,7 @@ export const heroSectionContent = {
       subtitle: "Year-Round Care",
       description: "From spring cleanup to fall leaf removal and winter prep, we keep your lawn healthy through every season.",
       cardClass: "hero-card-3",
-      icon: Clock,
+      icon: "Clock",
       stats: "12-Month Programs",
       delay: 0.2,
     },
