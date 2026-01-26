@@ -200,22 +200,24 @@ export function Header() {
                                 <Link
                                   href={`/services/${service.id}`}
                                   onClick={() => setIsServicesOpen(false)}
-                                  className="group flex items-start gap-3 p-3 rounded-xl hover:bg-primary/5 transition-all border border-transparent hover:border-primary/20"
+                                  className="group relative block h-24 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
                                 >
-                                  <div className="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center group-hover:scale-110 transition-all">
-                                    <Image
-                                      src={service.image}
-                                      alt={service.title}
-                                      width={40}
-                                      height={40}
-                                      className="object-cover"
-                                    />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
+                                  {/* Background Image */}
+                                  <Image
+                                    src={service.image}
+                                    alt={service.title}
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                  />
+                                  {/* Overlay */}
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 group-hover:bg-black/70" />
+
+                                  {/* Content */}
+                                  <div className="relative z-10 h-full p-3 flex flex-col justify-end">
+                                    <h4 className="text-white text-sm font-medium transition-colors">
                                       {service.title}
                                     </h4>
-                                    <p className="text-xs text-muted-foreground line-clamp-1">
+                                    <p className="text-white/70 text-xs line-clamp-1">
                                       {service.shortDescription}
                                     </p>
                                   </div>
@@ -236,9 +238,6 @@ export function Header() {
           <div className="flex items-center gap-1 sm:gap-3">
             {siteConfig.showPhoneNumber && (
               <div className="hidden md:flex"> {/* New wrapper div for responsive hiding */}
-                {/* Divider */}
-                <div className="w-px h-8 bg-border" />
-
                 {/* Phone Button */}
                 <motion.a
                   href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
@@ -370,18 +369,27 @@ export function Header() {
                                                           key={service.id}
                                                           href={`/services/${service.id}`}
                                                           onClick={() => setIsMobileMenuOpen(false)}
-                                                          className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                                          className="group relative block h-20 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
                                                         >
-                                                          <div className="flex-shrink-0 w-6 h-6 rounded-md overflow-hidden">
-                                                            <Image
-                                                              src={service.image}
-                                                              alt={service.title}
-                                                              width={24}
-                                                              height={24}
-                                                              className="object-cover"
-                                                            />
+                                                          {/* Background Image */}
+                                                          <Image
+                                                            src={service.image}
+                                                            alt={service.title}
+                                                            fill
+                                                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                                          />
+                                                          {/* Overlay */}
+                                                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 group-hover:bg-black/70" />
+
+                                                          {/* Content */}
+                                                          <div className="relative z-10 h-full p-3 flex flex-col justify-end">
+                                                            <h4 className="text-white text-sm font-medium transition-colors">
+                                                              {service.title}
+                                                            </h4>
+                                                            <p className="text-white/70 text-xs line-clamp-1">
+                                                              {service.shortDescription}
+                                                            </p>
                                                           </div>
-                                                          {service.title}
                                                         </Link>
                                                       )
                                                     })}                        </div>
