@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 
   title: {
     // The default title for the site (used on the homepage).
-    default: `${companyInfo.name} | Professional Services`,
+    default: `${companyInfo.name} | Professional LawnCare Services`,
     // A template for child pages. `%s` will be replaced by the page's specific title.
     template: `%s | ${companyInfo.name}`,
   },
