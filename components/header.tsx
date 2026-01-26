@@ -235,9 +235,9 @@ export function Header() {
           {/* Right Side Actions */}
           <div className="flex items-center gap-1 sm:gap-3">
             {siteConfig.showPhoneNumber && (
-              <>
+              <div className="hidden md:flex"> {/* New wrapper div for responsive hiding */}
                 {/* Divider */}
-                <div className="hidden md:block w-px h-8 bg-border" />
+                <div className="w-px h-8 bg-border" />
 
                 {/* Phone Button */}
                 <motion.a
@@ -254,7 +254,7 @@ export function Header() {
                   </motion.div>
                   <span className="text-sm font-medium hidden lg:inline">{companyInfo.phone}</span>
                 </motion.a>
-              </>
+              </div>
             )}
 
             {/* Location Button with Dropdown */}
@@ -316,12 +316,14 @@ export function Header() {
 
             {/* CTA Button */}
             {siteConfig.showGetFreeQuoteButton && (
-              <Button asChild size="sm" className="glow-blue text-xs sm:text-sm px-2 sm:px-4 whitespace-nowrap">
-                <Link href="/#contact">
-                  <span className="hidden sm:inline">{headerContent.ctaButton.desktop}</span>
-                  <span className="sm:hidden">{headerContent.ctaButton.mobile}</span>
-                </Link>
-              </Button>
+              <div className="hidden md:inline-flex"> {/* New wrapper div for responsive hiding */}
+                <Button asChild size="sm" className="glow-blue text-xs sm:text-sm px-2 sm:px-4 whitespace-nowrap">
+                  <Link href="/#contact">
+                    <span className="hidden sm:inline">{headerContent.ctaButton.desktop}</span>
+                    <span className="sm:hidden">{headerContent.ctaButton.mobile}</span>
+                  </Link>
+                </Button>
+              </div>
             )}
 
             {/* Mobile Menu Toggle */}
