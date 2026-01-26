@@ -33,33 +33,33 @@ export const aboutSectionContent = {
     line2: "Lawn Care Experts"
   },
   paragraphs: [
-    "Since 2015, Cale's Lawncare has been transforming yards across Springfield and the surrounding communities. What started as a one-man mowing operation has grown into a full-service lawn care company trusted by hundreds of homeowners and businesses.",
-    "Our team of certified lawn care professionals uses commercial-grade equipment and proven techniques to deliver results that make your neighbors jealous. We treat every lawn like it's our own, because your satisfaction is what keeps us growing."
+    "Since 2020, Cale's Lawncare has been transforming yards across Macomb, Rushville, and the surrounding countryside. What started as a one-man mowing operation has grown into a full-service lawn care company trusted by hundreds of homeowners and businesses.",
+    "We uses commercial-grade equipment and proven techniques to deliver results that make your neighbors jealous. We treat every lawn like it's our own, because your satisfaction is what keeps us growing."
   ],
   image: {
     /** Path to the about section image. Set to null to use the animated visual instead. */
     src: "/branding/about_us.jpeg",
     /** The main number/stat displayed prominently (e.g., "10+" for years) */
-    year: "10+",
+    year: "5+",
     /** First line of text below the year (e.g., "Years of Excellence") */
     line1: "Years of Excellence",
     /** Second line of text (e.g., "Serving Clients Since 2015") */
-    line2: "Serving Lawns Since 2015",
+    line2: "Serving Lawns Since 2020",
   },
   statsCard: {
     value: "99%",
     label: "Satisfaction"
   },
   stats: [
-    { icon: Users, value: "500+", label: "Happy Customers" },
-    { icon: Trophy, value: "10+", label: "Years Experience" },
-    { icon: Sparkles, value: "15K+", label: "Lawns Serviced" },
+    { icon: Users, value: "100+", label: "Happy Customers" },
+    { icon: Trophy, value: "5+", label: "Years Experience" },
+    { icon: Sparkles, value: "100+", label: "Lawns Serviced" },
     { icon: ThumbsUp, value: "99%", label: "Satisfaction Rate" },
   ],
   values: [
     {
       title: "Lawn Expertise",
-      description: "Our certified technicians understand grass types, soil conditions, and regional climate to give your lawn exactly what it needs.",
+      description: "We understand grass types, soil conditions, and regional climate to give your lawn exactly what it needs.",
     },
     {
       title: "Reliable Service",

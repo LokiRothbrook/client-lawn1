@@ -79,7 +79,7 @@ export const services: Service[] = [
       "Grass clipping cleanup included"
     ],
     image: "/services/lawn-mowing.webp",
-    price: "From $35"
+    price: "Starting at $35"
   },
   {
     id: "lawn-fertilization",
@@ -94,8 +94,8 @@ export const services: Service[] = [
       "Slow-release formulas",
       "Eco-friendly options available"
     ],
-    image: "/services/service-2.svg",
-    price: "From $45"
+    image: "/services/lawn-weed-and-feed-placeholder.webp",
+    price: "Starting at $45"
   },
   {
     id: "weed-control",
@@ -110,24 +110,8 @@ export const services: Service[] = [
       "Safe for pets & children",
       "Broadleaf & grassy weed control"
     ],
-    image: "/services/service-3.svg",
-    price: "From $50"
-  },
-  {
-    id: "aeration-seeding",
-    title: "Aeration & Overseeding",
-    shortDescription: "Core aeration and lawn renovation",
-    description: "Revitalize your lawn with our aeration and overseeding services. Core aeration relieves soil compaction and allows water, air, and nutrients to reach the roots, while overseeding fills in thin spots and introduces improved grass varieties.",
-    iconName: "Sprout",
-    features: [
-      "Core aeration service",
-      "Premium grass seed blends",
-      "Improved water absorption",
-      "Reduced soil compaction",
-      "Thicker, healthier lawn"
-    ],
-    image: "/services/service-4.svg",
-    price: "From $150"
+    image: "/services/trimming-edging-placeholder.webp",
+    price: "Starting at $30"
   },
   {
     id: "hedge-trimming",
@@ -142,8 +126,8 @@ export const services: Service[] = [
       "All shrub types serviced",
       "Seasonal maintenance plans"
     ],
-    image: "/services/service-5.svg",
-    price: "From $75"
+    image: "/services/hedge-placeholder.webp",
+    price: "Starting at $25"
   },
   {
     id: "leaf-removal",
@@ -158,24 +142,8 @@ export const services: Service[] = [
       "Flower bed cleanup",
       "Weekly fall service plans"
     ],
-    image: "/services/service-6.svg",
-    price: "From $85"
-  },
-  {
-    id: "pest-control",
-    title: "Lawn Pest Control",
-    shortDescription: "Grub and insect treatment",
-    description: "Protect your lawn from destructive pests like grubs, chinch bugs, and armyworms. Our targeted pest control treatments eliminate current infestations and create a barrier against future invasions.",
-    iconName: "Shield",
-    features: [
-      "Grub prevention & treatment",
-      "Surface insect control",
-      "Pet & family safe products",
-      "Preventive applications",
-      "Satisfaction guaranteed"
-    ],
-    image: "/services/service-7.svg",
-    price: "From $60"
+    image: "/services/leaf-placeholder.webp",
+    price: "Starting at $60"
   },
   {
     id: "spring-cleanup",
@@ -190,8 +158,8 @@ export const services: Service[] = [
       "First mow of season",
       "Complete property refresh"
     ],
-    image: "/services/service-8.svg",
-    price: "From $125"
+    image: "/services/season-placeholder.webp",
+    price: "Starting at $125"
   }
 ];
 
