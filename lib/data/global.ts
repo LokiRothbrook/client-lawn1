@@ -52,7 +52,7 @@ export const companyInfo = {
   tagline: "Your Lawn, Our Passion",
   phone: "(309) 333-7599",
   email: "cale.dylan@gmail.com",
-  address: "456 Garden Way, Springfield, IL 62701",
+  address: "",
   hours: "Mon-Sat: 7AM-7PM | Sun: 9AM-5PM",
 };
 
@@ -194,7 +194,7 @@ export const headerContent = {
  *   very bottom bar of the footer (e.g., Privacy Policy, Terms of Service).
  */
 export const footerContent = {
-  taglineSuffix: "Your trusted partner for beautiful, healthy lawns in the greater Springfield area.",
+  taglineSuffix: "Your trusted partner for beautiful, healthy lawns in the Macomb/Rushville area.",
   columns: {
     services: {
       title: "Our Services",

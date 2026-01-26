@@ -115,5 +115,5 @@ export const galleryItems: GalleryItem[] = [
  */
 export const galleryPageContent = {
   title: "Lawn Care Gallery",
-  description: "Browse our gallery of lawn care transformations. See the quality results we deliver for residential and commercial properties throughout Springfield.",
+  description: "Browse our gallery of lawn care transformations. See the quality results we deliver for residential and commercial properties.",
 };
