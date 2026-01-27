@@ -14,8 +14,7 @@ interface StaticPageConfigItem {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Last content update date (based on file modification times)
-  const lastContentUpdate = new Date('2026-01-25');
+  const lastContentUpdate = new Date();
 
   const staticPagesConfig: StaticPageConfigItem[] = [
     { url: BASE_URL, lastModified: lastContentUpdate, changeFrequency: 'weekly', priority: 1, condition: true },
