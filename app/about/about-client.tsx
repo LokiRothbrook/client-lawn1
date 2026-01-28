@@ -11,9 +11,9 @@ export default function AboutPageClient() {
   return (
     <>
       <Header />
-      <main className="pt-20">
+      <main className="pt-15">
         {/* Page Header */}
-        <section className="relative py-24 overflow-hidden">
+        <section className="relative p-5 overflow-hidden">
           <div className="absolute inset-0 water-pattern" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-accent/10" />
           <motion.div

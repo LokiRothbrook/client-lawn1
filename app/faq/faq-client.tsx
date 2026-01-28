@@ -16,8 +16,8 @@ export default function FaqClient() {
   return (
     <>
       <Header />
-      <main className="pt-20">
-        <section className="relative py-24 overflow-hidden">
+      <main className="pt-15">
+        <section className="relative p-5 overflow-hidden">
           <div className="absolute inset-0 water-pattern" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-accent/10" />
           <motion.div
