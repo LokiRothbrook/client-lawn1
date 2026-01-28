@@ -45,7 +45,7 @@ export default function FaqClient() {
           </div>
         </section>
 
-        <FaqSection />
+        <FaqSection showHeader={false} />
 
         {/* CTA Section */}
         <CtaSection />

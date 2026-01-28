@@ -23,24 +23,26 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-export function FaqSection() {
+export function FaqSection({ showHeader = true }: { showHeader?: boolean }) {
   return (
     <section className="py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            {faqPageContent.title.split(" ")[0]}{" "}
-            <span className="gradient-text">{faqPageContent.title.split(" ").slice(1).join(" ")}</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {faqPageContent.description}
-          </p>
-        </motion.div>
+        {showHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              {faqPageContent.title.split(" ")[0]}{" "}
+              <span className="gradient-text">{faqPageContent.title.split(" ").slice(1).join(" ")}</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              {faqPageContent.description}
+            </p>
+          </motion.div>
+        )}
 
         <div className="space-y-4">
           {faqData.length === 0 ? (
