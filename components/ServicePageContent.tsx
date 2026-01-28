@@ -10,7 +10,7 @@ import {
   Phone,
   Star,
 } from "lucide-react"
-import { services, siteConfig } from "@/lib/data"
+import { services, siteConfig, companyInfo } from "@/lib/data"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -141,11 +141,20 @@ export function ServicePageContent({ service, prevService, nextService }: Servic
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="glass">
-                    <a href="tel:5559876543">
-                      <Phone className="w-5 h-5 mr-2" />
+                  <Button asChild size="lg">
+                    <motion.a
+                      href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <motion.div
+                        animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
+                        transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
+                      >
+                        <Phone className="w-5 h-5 mr-2" />
+                      </motion.div>
                       Call Now
-                    </a>
+                    </motion.a>
                   </Button>
                 </motion.div>
               </div>

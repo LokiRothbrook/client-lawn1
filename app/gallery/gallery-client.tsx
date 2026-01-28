@@ -194,9 +194,7 @@ export default function GalleryPageClient() {
             {hasMore && (
               <div className="text-center mt-12">
                 <Button
-                  variant="outline"
                   size="lg"
-                  className="glass"
                   onClick={() => setVisibleCount(prev => prev + 12)}
                 >
                   Load More ({filteredItems.length - visibleCount} remaining)

@@ -160,7 +160,7 @@ export function HeroSection() {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-base px-8 glass">
+              <Button asChild size="lg" className="text-base px-8">
                 <Link href={heroSectionContent.buttons.secondary.href}>
                   {heroSectionContent.buttons.secondary.text}
                 </Link>

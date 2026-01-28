@@ -127,7 +127,7 @@ export function ServicesSection() {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center mt-12"
         >
-          <Button asChild size="lg" variant="outline" className="group glass">
+          <Button asChild size="lg" className="group">
             <Link href={servicesSectionContent.button.href}>
               {servicesSectionContent.button.text}
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
