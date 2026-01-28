@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -48,6 +49,8 @@ function SocialLink({ href, icon: Icon, label }: { href: string; icon: React.Ele
 }
 
 export function Header() {
+  const pathname = usePathname()
+  const isHomePage = pathname === "/"
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const [isServicesOpen, setIsServicesOpen] = React.useState(false)
@@ -92,6 +95,9 @@ export function Header() {
     return true
   })
 
+  // Only show transparent navbar on the home page when not scrolled and mobile menu is closed
+  const showTransparent = isHomePage && !isScrolled && !isMobileMenuOpen
+
   const socialLinks = [];
   if (siteConfig.socialMedia.facebook.enabled) {
     socialLinks.push({ href: siteConfig.socialMedia.facebook.href, icon: Facebook, label: "Facebook" });
@@ -113,9 +119,25 @@ export function Header() {
       )}
     >
       {/* Background blur layer for the header */}
-      <div className="absolute inset-0 -z-10 bg-transparent glass" />
+      <div
+        className={cn(
+          "absolute inset-0 -z-10 border-b",
+          isMobileMenuOpen
+            ? "bg-white backdrop-blur-0 border-[oklch(0.50_0.18_145/0.2)]"
+            : showTransparent
+              ? "bg-transparent backdrop-blur-0 border-transparent"
+              : "bg-[oklch(1.0_0_0/0.8)] backdrop-blur-[20px] border-[oklch(0.50_0.18_145/0.2)]"
+        )}
+        style={{
+          transition: isMobileMenuOpen
+            ? "background-color, border-color, backdrop-filter"
+            : showTransparent
+              ? "border-color 200ms, background-color 500ms 150ms, backdrop-filter 500ms 150ms"
+              : "background-color 500ms, backdrop-filter 500ms, border-color 300ms 400ms"
+        }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/#" className="flex items-center group flex-shrink-0">
             <motion.div
@@ -144,8 +166,8 @@ export function Header() {
                   <button
                     onClick={() => setIsServicesOpen(!isServicesOpen)}
                     className={cn(
-                      "flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap",
-                      "hover:bg-primary/10 hover:text-primary",
+                      "flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 whitespace-nowrap",
+                      showTransparent ? "text-white hover:bg-white/10" : "text-primary hover:bg-primary/10",
                       isServicesOpen && "bg-primary/10 text-primary"
                     )}
                   >
@@ -160,7 +182,10 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-primary/10 hover:text-primary whitespace-nowrap"
+                    className={cn(
+                      "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 whitespace-nowrap",
+                      showTransparent ? "text-white hover:bg-white/10" : "text-primary hover:bg-primary/10"
+                    )}
                   >
                     {item.label}
                   </Link>
@@ -241,7 +266,7 @@ export function Header() {
                 {/* Phone Button */}
                 <motion.a
                   href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
-                  className="flex items-center gap-2 px-2 sm:px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all group whitespace-nowrap"
+                  className="flex items-center gap-2 px-2 sm:px-4 py-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all group whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -328,7 +353,10 @@ export function Header() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors"
+              className={cn(
+                "lg:hidden p-2 rounded-lg transition-colors duration-500",
+                showTransparent ? "text-white hover:bg-white/10" : "text-primary hover:bg-primary/10"
+              )}
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -349,7 +377,7 @@ export function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden glass border-t border-border"
           >
-            <div className="max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
               <div className="px-3 py-3 space-y-1">
                 {navItems.map((item) => (
                   <div key={item.label}>

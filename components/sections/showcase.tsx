@@ -100,9 +100,6 @@ export function ShowcaseSection() {
                     sizes={index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
                   />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
-
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-500" />
 
@@ -136,8 +133,8 @@ export function ShowcaseSection() {
                     <motion.div
                       className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
                     >
-                      <div className="bg-white/80 py-2 px-4 rounded-lg w-fit">
-                        <h3 className="text-primary text-lg sm:text-xl font-bold">
+                      <div className="backdrop-blur-md bg-black/20 border border-white/10 py-2 px-4 rounded-2xl w-fit">
+                        <h3 className="text-white text-lg sm:text-xl font-bold">
                           {item.title}
                         </h3>
                       </div>

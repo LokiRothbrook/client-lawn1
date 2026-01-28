@@ -664,12 +664,129 @@ html {
 /*
 * Windy Day Animation Keyframes
 */
-@keyframes wind-blow-leaf {
+/* Path 1: Gentle S-curve with leaf flipping */
+@keyframes leaf-drift-1 {
   0% {
-    transform: translateX(0vw) rotate(-10deg);
+    transform: perspective(600px) translateX(0vw) translateY(0vh) rotateZ(-15deg) rotateY(0deg);
+    opacity: 0;
+  }
+  7% {
+    opacity: var(--leaf-opacity, 0.5);
+  }
+  20% {
+    transform: perspective(600px) translateX(24vw) translateY(-4vh) rotateZ(35deg) rotateY(90deg);
+  }
+  40% {
+    transform: perspective(600px) translateX(48vw) translateY(3vh) rotateZ(-25deg) rotateY(180deg);
+  }
+  60% {
+    transform: perspective(600px) translateX(72vw) translateY(-2vh) rotateZ(50deg) rotateY(290deg);
+  }
+  80% {
+    transform: perspective(600px) translateX(96vw) translateY(4vh) rotateZ(-10deg) rotateY(380deg);
+  }
+  93% {
+    opacity: var(--leaf-opacity, 0.5);
   }
   100% {
-    transform: translateX(120vw) translateY(10vh) rotate(80deg);
+    transform: perspective(600px) translateX(120vw) translateY(6vh) rotateZ(65deg) rotateY(450deg);
+    opacity: 0;
+  }
+}
+
+/* Path 2: Swooping descent with end-over-end tumble */
+@keyframes leaf-drift-2 {
+  0% {
+    transform: perspective(600px) translateX(0vw) translateY(0vh) rotateZ(10deg) rotateX(0deg);
+    opacity: 0;
+  }
+  7% {
+    opacity: var(--leaf-opacity, 0.5);
+  }
+  15% {
+    transform: perspective(600px) translateX(15vw) translateY(6vh) rotateZ(-35deg) rotateX(70deg);
+  }
+  35% {
+    transform: perspective(600px) translateX(40vw) translateY(1vh) rotateZ(20deg) rotateX(170deg);
+  }
+  55% {
+    transform: perspective(600px) translateX(65vw) translateY(8vh) rotateZ(-40deg) rotateX(260deg);
+  }
+  75% {
+    transform: perspective(600px) translateX(90vw) translateY(3vh) rotateZ(30deg) rotateX(340deg);
+  }
+  93% {
+    opacity: var(--leaf-opacity, 0.5);
+  }
+  100% {
+    transform: perspective(600px) translateX(120vw) translateY(10vh) rotateZ(55deg) rotateX(420deg);
+    opacity: 0;
+  }
+}
+
+/* Path 3: Tight flutter with frequent direction changes */
+@keyframes leaf-drift-3 {
+  0% {
+    transform: perspective(600px) translateX(0vw) translateY(0vh) rotateZ(-5deg) rotateY(0deg);
+    opacity: 0;
+  }
+  7% {
+    opacity: var(--leaf-opacity, 0.5);
+  }
+  12% {
+    transform: perspective(600px) translateX(14vw) translateY(-2vh) rotateZ(25deg) rotateY(40deg);
+  }
+  24% {
+    transform: perspective(600px) translateX(29vw) translateY(1vh) rotateZ(-18deg) rotateY(95deg);
+  }
+  36% {
+    transform: perspective(600px) translateX(43vw) translateY(-3vh) rotateZ(40deg) rotateY(150deg);
+  }
+  48% {
+    transform: perspective(600px) translateX(58vw) translateY(2vh) rotateZ(-12deg) rotateY(200deg);
+  }
+  60% {
+    transform: perspective(600px) translateX(72vw) translateY(-4vh) rotateZ(35deg) rotateY(260deg);
+  }
+  72% {
+    transform: perspective(600px) translateX(86vw) translateY(0vh) rotateZ(-28deg) rotateY(310deg);
+  }
+  84% {
+    transform: perspective(600px) translateX(101vw) translateY(-2vh) rotateZ(45deg) rotateY(370deg);
+  }
+  93% {
+    opacity: var(--leaf-opacity, 0.5);
+  }
+  100% {
+    transform: perspective(600px) translateX(120vw) translateY(4vh) rotateZ(70deg) rotateY(420deg);
+    opacity: 0;
+  }
+}
+
+/* Path 4: Caught in a gust — slow start then fast acceleration */
+@keyframes leaf-drift-4 {
+  0% {
+    transform: perspective(600px) translateX(0vw) translateY(0vh) rotateZ(-20deg) rotateY(0deg);
+    opacity: 0;
+  }
+  7% {
+    opacity: var(--leaf-opacity, 0.5);
+  }
+  30% {
+    transform: perspective(600px) translateX(15vw) translateY(-5vh) rotateZ(40deg) rotateY(140deg);
+  }
+  50% {
+    transform: perspective(600px) translateX(45vw) translateY(2vh) rotateZ(-15deg) rotateY(260deg);
+  }
+  70% {
+    transform: perspective(600px) translateX(85vw) translateY(-3vh) rotateZ(55deg) rotateY(400deg);
+  }
+  93% {
+    opacity: var(--leaf-opacity, 0.5);
+  }
+  100% {
+    transform: perspective(600px) translateX(120vw) translateY(8vh) rotateZ(80deg) rotateY(540deg);
+    opacity: 0;
   }
 }
 
@@ -727,10 +844,10 @@ html {
   height: 20px;
   background-color: oklch(0.55 0.12 90 / 0.7); /* Earthy brown */
   border-radius: 20% 80% 30% 70% / 50% 50% 50% 50%;
-  animation: wind-blow-leaf linear infinite;
-  will-change: transform, opacity;
-  opacity: 0;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   animation-fill-mode: backwards;
+  will-change: transform, opacity;
 }
 
 .blowing-leaf-2 {
@@ -739,10 +856,10 @@ html {
   height: 20px;
   background-color: oklch(0.6 0.2 40 / 0.7); /* Orangey-red */
   border-radius: 30% 70% 20% 80% / 50% 50% 50% 50%;
-  animation: wind-blow-leaf linear infinite;
-  will-change: transform, opacity;
-  opacity: 0;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   animation-fill-mode: backwards;
+  will-change: transform, opacity;
 }
 
 .blowing-leaf-3 {
@@ -751,48 +868,68 @@ html {
   height: 18px;
   background-color: oklch(0.7 0.15 80 / 0.7); /* Golden-yellow */
   border-radius: 40% 60% 40% 60% / 50% 50% 50% 50%;
-  animation: wind-blow-leaf linear infinite;
-  will-change: transform, opacity;
-  opacity: 0;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   animation-fill-mode: backwards;
+  will-change: transform, opacity;
 }
 
-.blowing-grass {
+.blowing-leaf-4 {
   position: absolute;
-  width: 15px;
-  height: 3px;
-  background-color: oklch(0.50 0.18 145 / 0.6); /* Lawn green */
-  clip-path: polygon(0% 50%, 100% 0%, 90% 100%);
-  animation: wind-blow-grass linear infinite;
-  will-change: transform, opacity;
-  opacity: 0;
+  width: 16px;
+  height: 12px;
+  background-color: oklch(0.55 0.12 90 / 0.7); /* Wide brown */
+  border-radius: 50% 50% 20% 80% / 60% 40% 60% 40%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   animation-fill-mode: backwards;
+  will-change: transform, opacity;
 }
 
-.wind-line {
+.blowing-leaf-5 {
   position: absolute;
-  height: 1px;
-  width: 100px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    oklch(0.98 0.005 145 / 0.5) 50%,
-    transparent 100%
-  );
-  animation: wind-lines linear infinite;
-  will-change: transform, opacity;
-  opacity: 0;
+  width: 8px;
+  height: 22px;
+  background-color: oklch(0.6 0.2 40 / 0.7); /* Narrow orange-red */
+  border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   animation-fill-mode: backwards;
+  will-change: transform, opacity;
 }
 
-.wind-cloud {
+.blowing-leaf-6 {
   position: absolute;
-  width: 200px;
-  height: 100px;
-  background: radial-gradient(ellipse at center, oklch(0.50 0.18 145 / 0.1), transparent 70%);
-  border-radius: 50%;
-  filter: blur(20px);
-  animation: wind-cloud-animation linear infinite;
-  will-change: transform, opacity;
-  opacity: 0;
+  width: 10px;
+  height: 10px;
+  background-color: oklch(0.7 0.15 80 / 0.7); /* Small round golden */
+  border-radius: 50% 40% 50% 60% / 50% 60% 40% 50%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   animation-fill-mode: backwards;
+  will-change: transform, opacity;
+}
+
+.blowing-leaf-green {
+  position: absolute;
+  width: 11px;
+  height: 18px;
+  background-color: oklch(0.55 0.18 145 / 0.7); /* Green */
+  border-radius: 20% 80% 30% 70% / 50% 50% 50% 50%;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+  will-change: transform, opacity;
+}
+
+.blowing-leaf-maple {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: oklch(0.50 0.20 25 / 0.7); /* Deep red-orange */
+  clip-path: polygon(50% 0%, 65% 25%, 100% 20%, 75% 45%, 90% 70%, 65% 60%, 50% 100%, 35% 60%, 10% 70%, 25% 45%, 0% 20%, 35% 25%);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+  will-change: transform, opacity;
 }

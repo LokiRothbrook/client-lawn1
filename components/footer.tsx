@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Sparkles, Phone, Mail, MapPin, Facebook, Instagram, Youtube } from "lucide-react"
+import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from "lucide-react"
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -26,35 +26,29 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative bg-card overflow-hidden">
+    <footer className="relative bg-primary overflow-hidden">
       {/* Decorative Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-white/30 via-white/10 to-white/30" />
 
-      {/* Laser wave accents */}
-      <div className="absolute bottom-40 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-
-      {/* Glow Effect */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 blur-[150px]" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center mb-6">
-              <div className="flex items-center justify-center">
+            <Link href="/" className="inline-block mb-3">
+              <div className="backdrop-blur-md bg-white/70 border border-white/20 rounded-2xl p-3 inline-block">
                 <Image
                   src="/branding/logo-transparent-header.png"
                   alt={`${companyInfo.name} Logo`}
                   width={200}
                   height={200}
-                  className="object-contain max-h-20 w-auto"
+                  className="object-contain max-h-14 w-auto"
                 />
               </div>
             </Link>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-white/70 text-sm mb-4">
               {companyInfo.tagline}. {footerContent.taglineSuffix}
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               {socialPlatforms.map((platform) => {
                 const socialData = siteConfig.socialMedia[platform.id as keyof typeof siteConfig.socialMedia];
                 if (socialData && socialData.enabled) {
@@ -66,9 +60,9 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
-                      className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                     >
-                      <IconComponent className="w-5 h-5" />
+                      <IconComponent className="w-4 h-4" />
                     </motion.a>
                   );
                 }
@@ -79,13 +73,13 @@ export function Footer() {
 
           {/* Services Column */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">{footerContent.columns.services.title}</h3>
-            <ul className="space-y-3">
+            <h3 className="text-white font-semibold mb-3">{footerContent.columns.services.title}</h3>
+            <ul className="space-y-1.5">
               {services.slice(0, 6).map((service) => (
                 <li key={service.id}>
                   <Link
                     href={`/services/${service.id}`}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                    className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {service.title}
                   </Link>
@@ -94,7 +88,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-primary hover:text-primary/80 transition-colors text-sm font-medium"
+                  className="text-white hover:text-white/80 transition-colors text-sm font-medium"
                 >
                   {footerContent.columns.services.viewAll}
                 </Link>
@@ -104,8 +98,8 @@ export function Footer() {
 
           {/* Quick Links Column */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">{footerContent.columns.quickLinks.title}</h3>
-            <ul className="space-y-3">
+            <h3 className="text-white font-semibold mb-3">{footerContent.columns.quickLinks.title}</h3>
+            <ul className="space-y-1.5">
               {footerContent.columns.quickLinks.links
                 .filter(link => {
                   if (link.href === '/pricing') return siteConfig.pages.pricing.enabled;
@@ -117,7 +111,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                      className="text-white/70 hover:text-white transition-colors text-sm"
                     >
                       {link.label}
                     </Link>
@@ -128,15 +122,15 @@ export function Footer() {
 
           {/* Contact Column */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">{footerContent.columns.contact.title}</h3>
-            <ul className="space-y-4">
+            <h3 className="text-white font-semibold mb-3">{footerContent.columns.contact.title}</h3>
+            <ul className="space-y-2">
               {siteConfig.showPhoneNumber && (
                 <li>
                   <a
                     href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
-                    className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors text-sm"
+                    className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm"
                   >
-                    <Phone className="w-5 h-5 text-primary" />
+                    <Phone className="w-4 h-4 text-white" />
                     {companyInfo.phone}
                   </a>
                 </li>
@@ -144,41 +138,41 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${companyInfo.email}`}
-                  className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors text-sm"
+                  className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm"
                 >
-                  <Mail className="w-5 h-5 text-primary" />
+                  <Mail className="w-4 h-4 text-white" />
                   {companyInfo.email}
                 </a>
               </li>
               {siteConfig.showMapIcon && (
                 <li>
-                  <div className="flex items-start gap-3 text-muted-foreground text-sm">
-                    <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-2 text-white/70 text-sm">
+                    <MapPin className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
                     {companyInfo.address}
                   </div>
                 </li>
               )}
             </ul>
 
-            <div className="mt-6 p-4 rounded-xl glass-card">
-              <h4 className="font-medium mb-2">{footerContent.columns.contact.businessHours}</h4>
-              <p className="text-sm text-muted-foreground">{companyInfo.hours}</p>
+            <div className="mt-3 p-3 rounded-xl backdrop-blur-md bg-white/10 border border-white/10 text-center">
+              <h4 className="text-white text-sm font-medium mb-1">{footerContent.columns.contact.businessHours}</h4>
+              <p className="text-white/70 text-xs">{companyInfo.hours}</p>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-border">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-muted-foreground">
+        <div className="mt-6 pt-4 border-t border-white/20">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-sm text-white/60">
               &copy; {currentYear} {companyInfo.name}. {footerContent.bottomBar.copyright}
             </p>
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-6 text-sm text-white/60">
               {footerContent.bottomBar.links.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   {link.label}
                 </Link>

@@ -147,24 +147,25 @@ export default function GalleryPageClient() {
                       />
 
                       {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-background/0 group-hover:bg-background/70 transition-all duration-300">
+                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300">
                         <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
                           <motion.div
                             initial={{ scale: 0 }}
                             whileHover={{ scale: 1.1 }}
-                            className="w-14 h-14 rounded-full glass flex items-center justify-center mb-4 glow-blue"
+                            className="w-14 h-14 rounded-full backdrop-blur-md bg-black/20 border border-white/10 flex items-center justify-center mb-4"
                           >
-                            <ZoomIn className="w-7 h-7 text-primary" />
+                            <ZoomIn className="w-7 h-7 text-white" />
                           </motion.div>
-                          <h3 className="text-foreground font-semibold text-center text-lg mb-1">
-                            {item.title}
-                          </h3>
-                          <span className="text-muted-foreground text-sm">{item.category}</span>
+                          <div className="backdrop-blur-md bg-black/20 border border-white/10 py-2 px-4 rounded-2xl">
+                            <h3 className="text-white font-semibold text-center text-lg">
+                              {item.title}
+                            </h3>
+                          </div>
                         </div>
                       </div>
 
                       {/* Category Badge */}
-                      <div className="absolute top-4 left-4 px-3 py-1 rounded-full glass text-primary text-xs font-medium">
+                      <div className="absolute top-4 left-4 px-3 py-1 rounded-2xl backdrop-blur-md bg-black/20 border border-white/10 text-white text-xs font-medium">
                         {item.category}
                       </div>
                     </div>
