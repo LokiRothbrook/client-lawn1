@@ -4,7 +4,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight, CheckCircle } from "lucide-react"
-import { services } from "@/lib/data"
+import { services, servicesPageContent } from "@/lib/data"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CtaSection } from "@/components/sections/cta"
@@ -31,7 +31,7 @@ export default function ServicesClient() {
               transition={{ delay: 0.1 }}
               className="text-5xl sm:text-6xl font-bold mb-6"
             >
-              <span className="gradient-text">Professional Services</span>
+              <span className="gradient-text">{servicesPageContent.title}</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -39,8 +39,7 @@ export default function ServicesClient() {
               transition={{ delay: 0.2 }}
               className="text-xl text-muted-foreground max-w-2xl mx-auto"
             >
-              From individuals to businesses, we offer comprehensive
-              services tailored to your unique needs.
+              {servicesPageContent.subtitle}
             </motion.p>
           </div>
         </section>
