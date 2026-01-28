@@ -60,6 +60,16 @@ export function Header() {
 
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(companyInfo.address)}`
 
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isHomePage) {
+      e.preventDefault()
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    }
+  }
+
   React.useEffect(() => {
     let ticking = false
     const handleScroll = () => {
@@ -163,7 +173,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/#" className="flex items-center group flex-shrink-0">
+          <Link href="/#" onClick={handleHomeClick} className="flex items-center group flex-shrink-0">
             <motion.div
               className="relative"
               whileHover={{ scale: 1.05 }}
@@ -206,6 +216,7 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href}
+                    onClick={item.href === '/#' ? handleHomeClick : undefined}
                     className={cn(
                       "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-500 whitespace-nowrap",
                       showTransparent ? "text-white hover:bg-white/10" : "text-primary hover:bg-primary/10"
@@ -446,7 +457,12 @@ export function Header() {
                     ) : (
                       <Link
                         href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={(e) => {
+                          setIsMobileMenuOpen(false)
+                          if (item.href === '/#') {
+                            handleHomeClick(e)
+                          }
+                        }}
                         className="block px-3 py-3 text-base font-medium hover:text-primary transition-colors"
                       >
                         {item.label}
