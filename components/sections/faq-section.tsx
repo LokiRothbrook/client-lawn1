@@ -9,6 +9,20 @@ import {
 } from "@/components/ui/accordion"
 import { faqData, faqPageContent } from "@/lib/data" // Import faqPageContent for the title and description
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export function FaqSection() {
   return (
     <section className="py-24">
@@ -34,27 +48,31 @@ export function FaqSection() {
               <p className="text-lg text-muted-foreground">Our FAQ section is being updated. Please contact us directly with any questions.</p>
             </div>
           ) : (
-          <Accordion type="single" collapsible className="w-full">
-            {faqData.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-2xl glass-card"
-              >
-                <AccordionItem value={`item-${index}`}>
-                  <AccordionTrigger className="text-lg font-medium text-left">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-base text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>
-            ))}
-          </Accordion>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            <Accordion type="single" collapsible className="w-full">
+              {faqData.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="p-6 rounded-2xl glass-card"
+                >
+                  <AccordionItem value={`item-${index}`}>
+                    <AccordionTrigger className="text-lg font-medium text-left">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                </motion.div>
+              ))}
+            </Accordion>
+          </motion.div>
           )}
         </div>
       </div>
