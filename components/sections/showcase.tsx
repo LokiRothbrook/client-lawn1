@@ -69,6 +69,11 @@ export function ShowcaseSection() {
         </div>
 
         {/* Bento Grid Layout */}
+        {showcaseItems.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-lg text-muted-foreground">Our project gallery is being updated. Check back soon to see our latest work.</p>
+          </div>
+        ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
           {showcaseItems.map((item, index) => {
             // Create varied sizes for bento effect
@@ -148,6 +153,7 @@ export function ShowcaseSection() {
             )
           })}
         </div>
+        )}
 
         {/* CTA */}
         <motion.div

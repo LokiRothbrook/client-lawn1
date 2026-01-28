@@ -49,6 +49,11 @@ export default function PricingPageClient() {
         {/* Pricing Plans */}
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {pricingPlans.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-lg text-muted-foreground">Pricing information is being updated. Please contact us for a quote.</p>
+              </div>
+            ) : (
             <div className="grid md:grid-cols-3 gap-8 items-start">
               {pricingPlans.map((plan, index) => (
                 <motion.div
@@ -117,6 +122,7 @@ export default function PricingPageClient() {
                 </motion.div>
               ))}
             </div>
+            )}
           </div>
         </section>
 

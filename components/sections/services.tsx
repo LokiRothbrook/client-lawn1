@@ -48,6 +48,14 @@ export function ServicesSection() {
           const displayedServices = services.slice(0, 6);
           const count = displayedServices.length;
 
+          if (count === 0) {
+            return (
+              <div className="text-center py-16">
+                <p className="text-lg text-muted-foreground">We are currently updating our service offerings. Please check back later.</p>
+              </div>
+            );
+          }
+
           return (
             <div className="flex flex-wrap justify-center gap-6">
               {displayedServices.map((service, index) => (
@@ -76,6 +84,7 @@ export function ServicesSection() {
                           alt={service.title}
                           fill
                           className="object-cover"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       </motion.div>
 

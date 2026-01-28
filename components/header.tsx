@@ -268,6 +268,7 @@ export function Header() {
                                     alt={service.title}
                                     fill
                                     className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    sizes="340px"
                                   />
                                   {/* Overlay */}
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 group-hover:bg-black/70" />
@@ -440,6 +441,7 @@ export function Header() {
                                 alt={service.title}
                                 fill
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                sizes="100vw"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 group-hover:bg-black/70" />
                               <div className="relative z-10 h-full p-3 flex flex-col justify-end">

@@ -29,6 +29,11 @@ export function FaqSection() {
         </motion.div>
 
         <div className="space-y-4">
+          {faqData.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground">Our FAQ section is being updated. Please contact us directly with any questions.</p>
+            </div>
+          ) : (
           <Accordion type="single" collapsible className="w-full">
             {faqData.map((faq, index) => (
               <motion.div
@@ -50,6 +55,7 @@ export function FaqSection() {
               </motion.div>
             ))}
           </Accordion>
+          )}
         </div>
       </div>
     </section>

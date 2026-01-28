@@ -47,6 +47,11 @@ export default function ServicesClient() {
         {/* Services Grid */}
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {services.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-lg text-muted-foreground">We are currently updating our service offerings. Please check back later.</p>
+              </div>
+            ) : (
             <div className="grid md:grid-cols-2 gap-8">
               {services.map((service) => (
                 <Link href={`/services/${service.id}`} key={service.id} className="group block h-full">
@@ -57,6 +62,7 @@ export default function ServicesClient() {
                         alt={service.title}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <motion.div
                         className="absolute bottom-8 right-8 px-4 py-2 rounded-xl glass shadow-lg"
@@ -93,6 +99,7 @@ export default function ServicesClient() {
                 </Link>
               ))}
             </div>
+            )}
           </div>
         </section>
         {/* CTA Section */}

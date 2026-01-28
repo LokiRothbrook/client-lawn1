@@ -8,7 +8,8 @@ import { galleryItems } from "@/lib/data"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { CtaSection } from "@/components/sections/cta"
-import { Lightbox } from "@/components/lightbox" // Import the new Lightbox component
+import { Lightbox } from "@/components/lightbox"
+import { Button } from "@/components/ui/button"
 
 // Memoized outside component since galleryItems is static
 const categories = ["All", ...Array.from(new Set(galleryItems.map(item => item.category)))]
@@ -16,6 +17,7 @@ const categories = ["All", ...Array.from(new Set(galleryItems.map(item => item.c
 export default function GalleryPageClient() {
   const [selectedCategory, setSelectedCategory] = React.useState("All")
   const [selectedImage, setSelectedImage] = React.useState<typeof galleryItems[0] | null>(null)
+  const [visibleCount, setVisibleCount] = React.useState(12)
 
   // Memoize filtered items to prevent recalculation on every render
   const filteredItems = React.useMemo(
@@ -24,6 +26,9 @@ export default function GalleryPageClient() {
       : galleryItems.filter(item => item.category === selectedCategory),
     [selectedCategory]
   )
+
+  const visibleItems = filteredItems.slice(0, visibleCount)
+  const hasMore = visibleCount < filteredItems.length
 
   const currentIndex = selectedImage ? filteredItems.findIndex(item => item.id === selectedImage.id) : -1
 
@@ -99,7 +104,7 @@ export default function GalleryPageClient() {
               {categories.map((category) => (
                 <button
                   key={category}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => { setSelectedCategory(category); setVisibleCount(12); }}
                   className={`
                     px-5 py-2.5 rounded-full text-sm font-medium transition-all
                     ${selectedCategory === category
@@ -118,8 +123,17 @@ export default function GalleryPageClient() {
               layout
               className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
             >
+              {filteredItems.length === 0 ? (
+                <div className="col-span-full text-center py-16">
+                  <p className="text-lg text-muted-foreground">
+                    {galleryItems.length === 0
+                      ? "Our project gallery is being updated. Check back soon to see our latest work."
+                      : "No projects found in this category."}
+                  </p>
+                </div>
+              ) : (
               <AnimatePresence mode="popLayout">
-                {filteredItems.map((item, index) => (
+                {visibleItems.map((item, index) => (
                   <motion.div
                     key={item.id}
                     layout
@@ -172,7 +186,22 @@ export default function GalleryPageClient() {
                   </motion.div>
                 ))}
               </AnimatePresence>
+              )}
             </motion.div>
+
+            {/* Load More Button */}
+            {hasMore && (
+              <div className="text-center mt-12">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="glass"
+                  onClick={() => setVisibleCount(prev => prev + 12)}
+                >
+                  Load More ({filteredItems.length - visibleCount} remaining)
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 

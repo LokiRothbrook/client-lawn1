@@ -31,7 +31,7 @@ function WindyDayBackground() {
     const leafClasses = ['blowing-leaf-1', 'blowing-leaf-2', 'blowing-leaf-3', 'blowing-leaf-4', 'blowing-leaf-5', 'blowing-leaf-6'];
     const driftAnimations = ['leaf-drift-1', 'leaf-drift-2', 'leaf-drift-3', 'leaf-drift-4'];
     // Autumn leaves
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 15; i++) {
       items.push({
         className: leafClasses[Math.floor(Math.random() * leafClasses.length)],
         style: {
@@ -45,7 +45,7 @@ function WindyDayBackground() {
       });
     }
     // Green leaves
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 8; i++) {
       items.push({
         className: 'blowing-leaf-green',
         style: {
@@ -59,7 +59,7 @@ function WindyDayBackground() {
       });
     }
     // Maple leaves
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       items.push({
         className: 'blowing-leaf-maple',
         style: {

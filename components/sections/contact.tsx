@@ -288,6 +288,7 @@ export function ContactSection() {
                       id="firstName"
                       placeholder={contactSectionContent.form.placeholders.firstName}
                       required
+                      maxLength={50}
                       className="glass"
                       value={formData.firstName}
                       onChange={handleChange}
@@ -299,6 +300,7 @@ export function ContactSection() {
                       id="lastName"
                       placeholder={contactSectionContent.form.placeholders.lastName}
                       required
+                      maxLength={50}
                       className="glass"
                       value={formData.lastName}
                       onChange={handleChange}
@@ -314,6 +316,7 @@ export function ContactSection() {
                       type="email"
                       placeholder={contactSectionContent.form.placeholders.email}
                       required
+                      maxLength={100}
                       className="glass"
                       value={formData.email}
                       onChange={handleChange}
@@ -325,6 +328,7 @@ export function ContactSection() {
                       id="phone"
                       placeholder={contactSectionContent.form.placeholders.phone}
                       required
+                      maxLength={20}
                       className="glass"
                       value={formData.phone}
                       onChange={handleChange}

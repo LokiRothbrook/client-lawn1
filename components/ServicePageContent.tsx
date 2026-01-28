@@ -158,7 +158,7 @@ export function ServicePageContent({ service, prevService, nextService }: Servic
                 className="relative"
               >
                 <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 p-8 relative overflow-hidden glass-card">
-                  <Image src={service.image} alt={service.title} fill className="object-cover" />
+                  <Image src={service.image} alt={service.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
 
                   
 
