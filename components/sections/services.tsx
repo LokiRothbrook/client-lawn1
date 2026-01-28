@@ -77,7 +77,7 @@ export function ServicesSection() {
                       {/* Image */}
                       <motion.div
                         whileHover={{ scale: 1.05 }}
-                        className="relative w-full h-32"
+                        className="relative w-full h-32 skeleton-shimmer"
                       >
                         <Image
                           src={service.image}

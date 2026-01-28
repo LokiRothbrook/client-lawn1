@@ -260,7 +260,7 @@ export function Header() {
                                 <Link
                                   href={`/services/${service.id}`}
                                   onClick={() => setIsServicesOpen(false)}
-                                  className="group relative block h-24 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+                                  className="group relative block h-24 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 skeleton-shimmer"
                                 >
                                   {/* Background Image */}
                                   <Image
@@ -434,7 +434,7 @@ export function Header() {
                               key={service.id}
                               href={`/services/${service.id}`}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className="group relative block h-20 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                              className="group relative block h-20 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 skeleton-shimmer"
                             >
                               <Image
                                 src={service.image}

@@ -108,7 +108,7 @@ export function HeroSection() {
       className="relative overflow-hidden"
     >
       {/* Image Hero Area */}
-      <div className="relative min-h-screen flex items-center justify-center">
+      <div className="relative min-h-screen flex items-center justify-center bg-[oklch(0.20_0.05_145)]">
         {/* Background Image */}
         <Image
           src="/branding/cover.png"

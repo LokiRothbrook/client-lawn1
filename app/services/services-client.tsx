@@ -56,7 +56,7 @@ export default function ServicesClient() {
               {services.map((service) => (
                 <Link href={`/services/${service.id}`} key={service.id} className="group block h-full">
                   <div className="relative h-full rounded-2xl glass-card hover:border-primary/50 transition-all duration-500 overflow-hidden">
-                    <div className="relative w-full h-48">
+                    <div className="relative w-full h-48 skeleton-shimmer">
                       <Image
                         src={service.image}
                         alt={service.title}

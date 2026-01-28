@@ -95,7 +95,7 @@ export function ShowcaseSection() {
                 className={`${sizes[index]} relative group cursor-pointer`}
                 onClick={() => { setSelectedImage(item); }}
               >
-                <div className="absolute inset-0 rounded-2xl overflow-hidden glass-card">
+                <div className="absolute inset-0 rounded-2xl overflow-hidden glass-card skeleton-shimmer">
                   {/* Project Image */}
                   <Image
                     src={item.image}

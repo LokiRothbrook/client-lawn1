@@ -148,7 +148,7 @@ export default function GalleryPageClient() {
                     onClick={() => setSelectedImage(item)}
                   >
                     <div className={`
-                      relative w-full glass-card
+                      relative w-full glass-card skeleton-shimmer
                       ${index % 5 === 0 ? 'aspect-square' : 'aspect-[4/3]'}
                     `}>
                       {/* Project Image */}
