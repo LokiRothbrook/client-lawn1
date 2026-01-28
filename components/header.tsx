@@ -88,6 +88,30 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  React.useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add("overflow-hidden")
+    } else {
+      document.body.classList.remove("overflow-hidden")
+    }
+    // Cleanup on component unmount
+    return () => {
+      document.body.classList.remove("overflow-hidden")
+    }
+  }, [isMobileMenuOpen])
+
+  // Close mobile menu on resize to desktop
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) { // Tailwind's lg breakpoint
+        setIsMobileMenuOpen(false)
+      }
+    }
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [setIsMobileMenuOpen])
+
   const navItems = headerContent.navItems.filter(item => {
     if (item.href === '/pricing') return siteConfig.pages.pricing.enabled
     if (item.href === '/gallery') return siteConfig.pages.gallery.enabled
@@ -378,9 +402,9 @@ export function Header() {
             transition={{ duration: 0.3 }}
             className="lg:hidden fixed inset-0 top-16 bg-white/95 backdrop-blur-md"
           >
-            <div className="h-full overflow-y-auto flex flex-col justify-end px-4 pb-6">
-              {/* Nav Links */}
-              <div className="space-y-1 mb-4">
+            <div className="h-full flex flex-col px-4 pb-6">
+              {/* Nav Links - scrollable area */}
+              <div className="flex-1 overflow-y-auto space-y-1 pt-4">
                 {navItems.map((item) => (
                   <div key={item.label}>
                     {item.hasDropdown ? (
