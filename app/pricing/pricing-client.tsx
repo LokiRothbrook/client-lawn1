@@ -20,6 +20,7 @@ export default function PricingPageClient() {
         <section className="relative py-24 overflow-hidden">
           {/* Background */}
           <div className="absolute inset-0 water-pattern" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-accent/10" />
           <motion.div
             className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-[150px]"
             animate={{ scale: [1, 1.1, 1] }}

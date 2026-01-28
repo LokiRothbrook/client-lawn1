@@ -26,6 +26,13 @@ import { Users, Trophy, Sparkles, ThumbsUp } from "lucide-react";
 // About Section Content
 // ============================================================================
 
+export const aboutPageContent = {
+  pageHeader: {
+    title: "About Us",
+    subtitle: "Our story, values, and commitment to your lawn.",
+  },
+};
+
 export const aboutSectionContent = {
   sectionTitle: "About Us",
   title: {

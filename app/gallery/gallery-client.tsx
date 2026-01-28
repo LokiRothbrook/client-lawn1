@@ -64,6 +64,7 @@ export default function GalleryPageClient() {
         <section className="relative py-24 overflow-hidden">
           {/* Background */}
           <div className="absolute inset-0 water-pattern" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-accent/10" />
           <motion.div
             className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[150px]"
             animate={{ scale: [1, 1.2, 1] }}
