@@ -285,7 +285,7 @@ export const callToActionSectionContent = {
  */
 export const heroSectionContent = {
 
-  subtitle: "Transform your outdoor space with our expert lawn care services. From weekly mowing to complete landscape maintenance, we keep your lawn looking its best all season long.",
+  subtitle: "Transform your outdoor space with our expert lawn care services. We'll keep your lawn looking its best all season long!",
   buttons: {
     primary: {
       text: "Get Free Estimate",
