@@ -372,13 +372,15 @@ export function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass border-t border-border"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden fixed inset-0 top-16 bg-white/95 backdrop-blur-md"
           >
-            <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
-              <div className="px-3 py-3 space-y-1">
+            <div className="h-full overflow-y-auto flex flex-col justify-end px-4 pb-6">
+              {/* Nav Links */}
+              <div className="space-y-1 mb-4">
                 {navItems.map((item) => (
                   <div key={item.label}>
                     {item.hasDropdown ? (
@@ -386,88 +388,86 @@ export function Header() {
                         <Link
                           href="/services"
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="block px-3 py-2 text-base font-medium hover:text-primary transition-colors"
+                          className="block px-3 py-3 text-base font-medium hover:text-primary transition-colors"
                         >
                           {headerContent.mobileMenu.services}
                         </Link>
                         <div className="pl-3 space-y-0.5">
-                                                      {services.map((service) => {
-                                                      return (
-                                                        <Link
-                                                          key={service.id}
-                                                          href={`/services/${service.id}`}
-                                                          onClick={() => setIsMobileMenuOpen(false)}
-                                                          className="group relative block h-20 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
-                                                        >
-                                                          {/* Background Image */}
-                                                          <Image
-                                                            src={service.image}
-                                                            alt={service.title}
-                                                            fill
-                                                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                                          />
-                                                          {/* Overlay */}
-                                                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 group-hover:bg-black/70" />
-
-                                                          {/* Content */}
-                                                          <div className="relative z-10 h-full p-3 flex flex-col justify-end">
-                                                            <h4 className="text-white text-sm font-medium transition-colors">
-                                                              {service.title}
-                                                            </h4>
-                                                            <p className="text-white/70 text-xs line-clamp-1">
-                                                              {service.shortDescription}
-                                                            </p>
-                                                          </div>
-                                                        </Link>
-                                                      )
-                                                    })}                        </div>
+                          {services.map((service) => (
+                            <Link
+                              key={service.id}
+                              href={`/services/${service.id}`}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="group relative block h-20 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                            >
+                              <Image
+                                src={service.image}
+                                alt={service.title}
+                                fill
+                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 group-hover:bg-black/70" />
+                              <div className="relative z-10 h-full p-3 flex flex-col justify-end">
+                                <h4 className="text-white text-sm font-medium">
+                                  {service.title}
+                                </h4>
+                                <p className="text-white/70 text-xs line-clamp-1">
+                                  {service.shortDescription}
+                                </p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     ) : (
                       <Link
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-base font-medium hover:text-primary transition-colors"
+                        className="block px-3 py-3 text-base font-medium hover:text-primary transition-colors"
                       >
                         {item.label}
                       </Link>
                     )}
                   </div>
                 ))}
+              </div>
 
-                {/* Social Links - Mobile */}
-                <div className="flex items-center justify-center gap-2 py-3">
-                  {socialLinks.map((social) => (
-                    <SocialLink key={social.label} {...social} />
-                  ))}
-                </div>
+              {/* Social Links */}
+              <div className="flex items-center justify-center gap-2 py-3">
+                {socialLinks.map((social) => (
+                  <SocialLink key={social.label} {...social} />
+                ))}
+              </div>
 
-                <div className="pt-3 border-t border-border space-y-2">
-                  {siteConfig.showPhoneNumber && (
-                    <a
-                      href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
-                      className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
-                    >
-                      <Phone className="w-4 h-4" />
-                      <span className="font-medium">{companyInfo.phone}</span>
-                    </a>
-                  )}
-                  {siteConfig.showMapIcon && (
-                    <a
-                      href={googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
-                    >
-                      <Navigation className="w-4 h-4" />
-                      <span className="font-medium">{headerContent.mobileMenu.getDirections}</span>
-                    </a>
-                  )}
-                  {siteConfig.showGetFreeQuoteButton && (
-                    <Button asChild className="w-full glow-blue" size="sm">
-                      <Link href="/#contact">{headerContent.mobileMenu.getQuote}</Link>
-                    </Button>
-                  )}
-                </div>
+              {/* Action Buttons - stacked at bottom */}
+              <div className="pt-3 border-t border-border space-y-2">
+                {siteConfig.showPhoneNumber && (
+                  <a
+                    href={`tel:${companyInfo.phone.replace(/[^0-9]/g, "")}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
+                  >
+                    <Phone className="w-4 h-4" />
+                    <span className="font-medium">{companyInfo.phone}</span>
+                  </a>
+                )}
+                {siteConfig.showMapIcon && (
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
+                  >
+                    <Navigation className="w-4 h-4" />
+                    <span className="font-medium">{headerContent.mobileMenu.getDirections}</span>
+                  </a>
+                )}
+                {siteConfig.showGetFreeQuoteButton && (
+                  <Button asChild className="w-full glow-blue" size="sm">
+                    <Link href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>{headerContent.mobileMenu.getQuote}</Link>
+                  </Button>
+                )}
               </div>
             </div>
           </motion.div>
