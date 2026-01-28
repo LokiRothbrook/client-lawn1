@@ -54,6 +54,18 @@ export const companyInfo = {
   email: "cale.dylan@gmail.com",
   address: "",
   hours: "Mon-Wed | 8am-5pm",
+  // Location and SEO fields
+  location: {
+    city: "Macomb",
+    state: "IL",
+    zip: "61455",
+    streetAddress: "Serving Macomb and Rushville areas",
+  },
+  serviceAreas: ["Macomb, IL", "Rushville, IL"],
+  serviceAreaDescription: "Macomb and Rushville, IL",
+  priceRange: "$35-$125",
+  openingHoursSchema: ["Mo-We 08:00-17:00"],
+  foundingYear: 2025,
 };
 
 // ============================================================================
@@ -293,7 +305,7 @@ export const heroSectionContent = {
       description: "Keep your lawn the envy of the neighborhood with our comprehensive residential lawn care packages tailored to your yard's unique needs.",
       cardClass: "hero-card-1",
       icon: "Home",
-      stats: "500+ Happy Homeowners",
+      stats: "25+ Happy Homeowners",
       delay: 0,
     },
     {
@@ -303,7 +315,7 @@ export const heroSectionContent = {
       description: "Make a great first impression with professionally maintained grounds. We serve offices, HOAs, retail centers, and more.",
       cardClass: "hero-card-2",
       icon: "Building",
-      stats: "100+ Properties Maintained",
+      stats: "Properties Maintained",
       delay: 0.1,
     },
     {

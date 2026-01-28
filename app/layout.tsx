@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
-import { companyInfo } from "@/lib/data";
+import { companyInfo, siteConfig, seoConfig } from "@/lib/data";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -20,11 +20,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
 
   title: {
-    default: `${companyInfo.name} | Professional LawnCare Services`,
+    default: `${companyInfo.name} | ${seoConfig.titleSuffix}`,
     template: `%s | ${companyInfo.name}`,
   },
 
-  description: `Welcome to ${companyInfo.name}. ${companyInfo.tagline}. Discover our professional services and get a free quote today!`,
+  description: seoConfig.defaultDescription,
 
   icons: {
     icon: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: `${companyInfo.name} | Professional LawnCare Services`,
+    title: `${companyInfo.name} | ${seoConfig.titleSuffix}`,
     description: `${companyInfo.tagline}. Discover our professional services and get a free quote today!`,
     url: '/',
     images: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: `${companyInfo.name} | Professional LawnCare Services`,
+    title: `${companyInfo.name} | ${seoConfig.titleSuffix}`,
     description: `${companyInfo.tagline}. Discover our professional services and get a free quote today!`,
     images: [
       {
@@ -66,45 +66,38 @@ export const metadata: Metadata = {
   },
 };
 
+// Build sameAs links from enabled social media
+const sameAsLinks = Object.values(siteConfig.socialMedia)
+  .filter((social) => social.enabled)
+  .map((social) => social.href);
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Structured data for LocalBusiness
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Cale's Lawncare",
-    "description": "Professional lawn care services in Macomb and Rushville areas. From weekly mowing to complete landscape maintenance, we keep your lawn looking its best all season long.",
+    "name": companyInfo.name,
+    "description": `Professional lawn care services in ${companyInfo.serviceAreaDescription}. From weekly mowing to complete landscape maintenance, we keep your lawn looking its best all season long.`,
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Macomb",
-      "addressRegion": "IL",
-      "postalCode": "61455",
-      "streetAddress": "Serving Macomb and Rushville areas"
+      "addressLocality": companyInfo.location.city,
+      "addressRegion": companyInfo.location.state,
+      "postalCode": companyInfo.location.zip,
+      "streetAddress": companyInfo.location.streetAddress,
     },
-    "telephone": "(309) 333-7599",
-    "email": "cale.dylan@gmail.com",
-    "openingHours": [
-      "Mo-Sa 07:00-19:00",
-      "Su 09:00-17:00"
-    ],
-    "priceRange": "$35-$125",
-    "areaServed": [
-      {
-        "@type": "Place",
-        "name": "Macomb, IL"
-      },
-      {
-        "@type": "Place",
-        "name": "Rushville, IL"
-      }
-    ],
-    "serviceArea": "Macomb and Rushville, IL",
-    "sameAs": [
-      "https://www.facebook.com/share/16umqNcTWq/?mibextid=wwXIfr"
-    ]
+    "telephone": companyInfo.phone,
+    "email": companyInfo.email,
+    "openingHours": companyInfo.openingHoursSchema,
+    "priceRange": companyInfo.priceRange,
+    "areaServed": companyInfo.serviceAreas.map((area) => ({
+      "@type": "Place",
+      "name": area,
+    })),
+    "serviceArea": companyInfo.serviceAreaDescription,
+    ...(sameAsLinks.length > 0 && { "sameAs": sameAsLinks }),
   };
 
   return (
