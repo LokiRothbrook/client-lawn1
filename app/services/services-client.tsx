@@ -13,11 +13,12 @@ export default function ServicesClient() {
   return (
     <>
       <Header />
-      <main className="pt-20">
+      <main className="pt-15">
         {/* Hero Section */}
-        <section className="relative py-24 overflow-hidden">
+        <section className="relative p-5 overflow-hidden">
           {/* Background */}
           <div className="absolute inset-0 water-pattern" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-primary/5 to-accent/10" />
           <motion.div
             className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[150px]"
             animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
@@ -47,16 +48,22 @@ export default function ServicesClient() {
         {/* Services Grid */}
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {services.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-lg text-muted-foreground">We are currently updating our service offerings. Please check back later.</p>
+              </div>
+            ) : (
             <div className="grid md:grid-cols-2 gap-8">
               {services.map((service) => (
                 <Link href={`/services/${service.id}`} key={service.id} className="group block h-full">
                   <div className="relative h-full rounded-2xl glass-card hover:border-primary/50 transition-all duration-500 overflow-hidden">
-                    <div className="relative w-full h-48">
+                    <div className="relative w-full h-48 skeleton-shimmer">
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <motion.div
                         className="absolute bottom-8 right-8 px-4 py-2 rounded-xl glass shadow-lg"
@@ -93,6 +100,7 @@ export default function ServicesClient() {
                 </Link>
               ))}
             </div>
+            )}
           </div>
         </section>
         {/* CTA Section */}

@@ -1,15 +1,44 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { companyInfo } from "@/lib/data"
+import { companyInfo, seoConfig } from "@/lib/data"
+import type { Metadata } from "next"
 
-export const metadata = {
-  title: "Privacy Policy",
-  description: "Learn about our data collection, usage, and protection practices.",
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+
+export const metadata: Metadata = {
+  title: seoConfig.pages.privacyPolicy.title,
+  description: seoConfig.pages.privacyPolicy.description,
+  openGraph: {
+    url: '/privacy-policy',
+  },
 }
 
 export default function PrivacyPolicyPage() {
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${BASE_URL}/`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Privacy Policy",
+        "item": `${BASE_URL}/privacy-policy`
+      }
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
       <Header />
       <main className="relative py-24 lg:py-32">
         <div className="absolute inset-0 water-pattern" />

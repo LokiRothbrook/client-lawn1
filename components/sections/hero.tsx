@@ -31,7 +31,7 @@ function WindyDayBackground() {
     const leafClasses = ['blowing-leaf-1', 'blowing-leaf-2', 'blowing-leaf-3', 'blowing-leaf-4', 'blowing-leaf-5', 'blowing-leaf-6'];
     const driftAnimations = ['leaf-drift-1', 'leaf-drift-2', 'leaf-drift-3', 'leaf-drift-4'];
     // Autumn leaves
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 15; i++) {
       items.push({
         className: leafClasses[Math.floor(Math.random() * leafClasses.length)],
         style: {
@@ -45,7 +45,7 @@ function WindyDayBackground() {
       });
     }
     // Green leaves
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 8; i++) {
       items.push({
         className: 'blowing-leaf-green',
         style: {
@@ -59,7 +59,7 @@ function WindyDayBackground() {
       });
     }
     // Maple leaves
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       items.push({
         className: 'blowing-leaf-maple',
         style: {
@@ -108,7 +108,7 @@ export function HeroSection() {
       className="relative overflow-hidden"
     >
       {/* Image Hero Area */}
-      <div className="relative min-h-screen flex items-center justify-center">
+      <div className="relative min-h-screen flex items-center justify-center bg-[oklch(0.20_0.05_145)]">
         {/* Background Image */}
         <Image
           src="/branding/cover.png"
@@ -160,7 +160,7 @@ export function HeroSection() {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-base px-8 glass">
+              <Button asChild size="lg" className="text-base px-8">
                 <Link href={heroSectionContent.buttons.secondary.href}>
                   {heroSectionContent.buttons.secondary.text}
                 </Link>

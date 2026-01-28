@@ -105,6 +105,7 @@ export function Footer() {
                   if (link.href === '/pricing') return siteConfig.pages.pricing.enabled;
                   if (link.href === '/gallery') return siteConfig.pages.gallery.enabled;
                   if (link.href === '/faq') return siteConfig.pages.faq.enabled;
+                  if (link.href === '/#testimonials') return siteConfig.homepageSections.testimonials.enabled;
                   return true;
                 })
                 .map((link) => (

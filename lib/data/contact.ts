@@ -85,7 +85,7 @@ export const contactSectionContent = {
     },
     disclaimer: "By submitting this form, you agree to our privacy policy. We'll respond within 24 hours with your custom lawn care quote.",
     successMessage: "Message Sent!",
-    errorMessage: "Failed to send message. Please try again or call us directly at (555) LAWN-123.",
+    errorMessage: "Failed to send message. Please try again or call us directly at (309) 333-7599.",
     quoteEmailTemplate: `
       <h2>New Lawn Care Quote Request</h2>
       <p>You have received a new quote request from your website.</p>
@@ -93,7 +93,7 @@ export const contactSectionContent = {
       <h3>Customer Information</h3>
       <ul>
         <li><strong>Name:</strong> {{firstName}} {{lastName}}</li>
-        <li><strong>Email:</b> {{email}}</li>
+        <li><strong>Email:</strong> {{email}}</li>
         <li><strong>Phone:</strong> {{phone}}</li>
       </ul>
 
@@ -105,7 +105,7 @@ export const contactSectionContent = {
 
       <hr />
       <p style="color: #666; font-size: 12px;">
-        This email was sent from the GreenScape Lawn Care website contact form.
+        This email was sent from the Cale's Lawncare website contact form.
       </p>
     `,
   }

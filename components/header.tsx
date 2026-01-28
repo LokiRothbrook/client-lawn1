@@ -260,7 +260,7 @@ export function Header() {
                                 <Link
                                   href={`/services/${service.id}`}
                                   onClick={() => setIsServicesOpen(false)}
-                                  className="group relative block h-24 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+                                  className="group relative block h-24 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 skeleton-shimmer"
                                 >
                                   {/* Background Image */}
                                   <Image
@@ -268,9 +268,10 @@ export function Header() {
                                     alt={service.title}
                                     fill
                                     className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    sizes="340px"
                                   />
                                   {/* Overlay */}
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 group-hover:bg-black/70" />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent transition-opacity duration-300" />
 
                                   {/* Content */}
                                   <div className="relative z-10 h-full p-3 flex flex-col justify-end">
@@ -377,10 +378,14 @@ export function Header() {
             {siteConfig.showGetFreeQuoteButton && (
               <div className="hidden md:inline-flex"> {/* New wrapper div for responsive hiding */}
                 <Button asChild size="sm" className="glow-blue text-xs sm:text-sm px-2 sm:px-4 whitespace-nowrap">
-                  <Link href="/#contact">
+                  <motion.a 
+                    href="/#contact"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     <span className="hidden sm:inline">{headerContent.ctaButton.desktop}</span>
                     <span className="sm:hidden">{headerContent.ctaButton.mobile}</span>
-                  </Link>
+                  </motion.a>
                 </Button>
               </div>
             )}
@@ -433,15 +438,16 @@ export function Header() {
                               key={service.id}
                               href={`/services/${service.id}`}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className="group relative block h-20 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                              className="group relative block h-20 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 skeleton-shimmer"
                             >
                               <Image
                                 src={service.image}
                                 alt={service.title}
                                 fill
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                sizes="100vw"
                               />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent transition-opacity duration-300 group-hover:bg-black/70" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent transition-opacity duration-300" />
                               <div className="relative z-10 h-full p-3 flex flex-col justify-end">
                                 <h4 className="text-white text-sm font-medium">
                                   {service.title}
@@ -487,7 +493,12 @@ export function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-lg bg-primary/10 text-primary text-sm"
                   >
+                     <motion.div
+                    animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
+                    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
+                  >
                     <Phone className="w-4 h-4" />
+                  </motion.div>
                     <span className="font-medium">{companyInfo.phone}</span>
                   </a>
                 )}

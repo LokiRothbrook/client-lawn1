@@ -48,6 +48,14 @@ export function ServicesSection() {
           const displayedServices = services.slice(0, 6);
           const count = displayedServices.length;
 
+          if (count === 0) {
+            return (
+              <div className="text-center py-16">
+                <p className="text-lg text-muted-foreground">We are currently updating our service offerings. Please check back later.</p>
+              </div>
+            );
+          }
+
           return (
             <div className="flex flex-wrap justify-center gap-6">
               {displayedServices.map((service, index) => (
@@ -69,13 +77,14 @@ export function ServicesSection() {
                       {/* Image */}
                       <motion.div
                         whileHover={{ scale: 1.05 }}
-                        className="relative w-full h-32"
+                        className="relative w-full h-32 skeleton-shimmer"
                       >
                         <Image
                           src={service.image}
                           alt={service.title}
                           fill
                           className="object-cover"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       </motion.div>
 
@@ -118,7 +127,7 @@ export function ServicesSection() {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center mt-12"
         >
-          <Button asChild size="lg" variant="outline" className="group glass">
+          <Button asChild size="lg" className="group">
             <Link href={servicesSectionContent.button.href}>
               {servicesSectionContent.button.text}
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

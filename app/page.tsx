@@ -7,11 +7,11 @@ import { ShowcaseSection } from "@/components/sections/showcase"
 import { TestimonialsSection } from "@/components/sections/testimonials"
 import { ContactSection } from "@/components/sections/contact"
 import { Footer } from "@/components/footer"
-import { siteConfig, companyInfo } from "@/lib/data"
+import { siteConfig, companyInfo, seoConfig } from "@/lib/data"
 
 export const metadata: Metadata = {
-  title: `${companyInfo.name} | Professional LawnCare Services`,
-  description: `${companyInfo.name} provides professional lawn care services in Macomb and Rushville, IL. ${companyInfo.tagline}. Get a free quote today!`,
+  title: `${companyInfo.name} | ${seoConfig.titleSuffix}`,
+  description: seoConfig.pages.home.description,
   openGraph: {
     url: '/',
   },
