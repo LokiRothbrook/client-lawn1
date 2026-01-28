@@ -12,6 +12,9 @@ import { siteConfig, companyInfo } from "@/lib/data"
 export const metadata: Metadata = {
   title: `${companyInfo.name} | Professional LawnCare Services`,
   description: `${companyInfo.name} provides professional lawn care services in Macomb and Rushville, IL. ${companyInfo.tagline}. Get a free quote today!`,
+  openGraph: {
+    url: '/',
+  },
 }
 
 export default function HomePage() {

@@ -39,6 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${companyInfo.name} | Professional LawnCare Services`,
     description: `${companyInfo.tagline}. Discover our professional services and get a free quote today!`,
+    url: '/',
     images: [
       {
         url: '/og-image.png',

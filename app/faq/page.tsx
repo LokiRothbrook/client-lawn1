@@ -7,6 +7,9 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 export const metadata: Metadata = {
     title: faqPageContent.title,
     description: faqPageContent.description,
+    openGraph: {
+        url: '/faq',
+    },
 };
 
 export default function FAQPage() {

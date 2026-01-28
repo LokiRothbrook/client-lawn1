@@ -53,7 +53,7 @@ export const companyInfo = {
   phone: "(309) 333-7599",
   email: "cale.dylan@gmail.com",
   address: "",
-  hours: "Mon-Sat: 7AM-7PM | Sun: 9AM-5PM",
+  hours: "Mon-Wed | 8am-5pm",
 };
 
 // ============================================================================
@@ -132,6 +132,7 @@ export const siteConfig = {
   showPhoneNumber: true,
   showMapIcon: false, // Set to false as requested
   showGetFreeQuoteButton: true,
+  showStarsOnServicePage: false,
 };
 
 // ============================================================================

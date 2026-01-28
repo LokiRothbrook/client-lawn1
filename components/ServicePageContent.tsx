@@ -10,7 +10,7 @@ import {
   Phone,
   Star,
 } from "lucide-react"
-import { services } from "@/lib/data"
+import { services, siteConfig } from "@/lib/data"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -118,13 +118,15 @@ export function ServicePageContent({ service, prevService, nextService }: Servic
                   transition={{ delay: 0.3 }}
                   className="flex items-center gap-6 mb-8"
                 >
-                  <div className="text-3xl font-bold text-primary">{service.price}</div>
-                  <div className="flex items-center gap-1 text-accent">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="w-5 h-5 fill-current" />
-                    ))}
-                    <span className="ml-2 text-sm text-muted-foreground">5.0 (120+ reviews)</span>
-                  </div>
+                  <div className="text-3xl font-bold text-primary text-center">{service.price}</div>
+                  {siteConfig.showStarsOnServicePage && (
+                    <div className="flex items-center gap-1 text-accent">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} className="w-5 h-5 fill-current" />
+                      ))}
+                      <span className="ml-2 text-sm text-muted-foreground">5.0 (120+ reviews)</span>
+                    </div>
+                  )}
                 </motion.div>
 
                 <motion.div

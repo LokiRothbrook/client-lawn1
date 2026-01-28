@@ -79,39 +79,7 @@ export const services: Service[] = [
       "Grass clipping cleanup included"
     ],
     image: "/services/lawn-mowing.webp",
-    price: "Starting at $35"
-  },
-  {
-    id: "lawn-fertilization",
-    title: "Lawn Fertilization",
-    shortDescription: "Custom fertilization programs",
-    description: "Give your lawn the nutrients it needs to thrive with our customized fertilization programs. We analyze your soil and grass type to create a tailored feeding schedule that promotes deep root growth and vibrant green color.",
-    iconName: "Leaf",
-    features: [
-      "Soil analysis included",
-      "Custom nutrient blends",
-      "Seasonal application schedule",
-      "Slow-release formulas",
-      "Eco-friendly options available"
-    ],
-    image: "/services/lawn-weed-and-feed-placeholder.webp",
-    price: "Starting at $45"
-  },
-  {
-    id: "weed-control",
-    title: "Weed Control",
-    shortDescription: "Pre & post-emergent weed treatment",
-    description: "Say goodbye to dandelions, crabgrass, and other invasive weeds. Our comprehensive weed control program includes both pre-emergent treatments to prevent weeds and post-emergent applications to eliminate existing problems.",
-    iconName: "Bug",
-    features: [
-      "Pre-emergent prevention",
-      "Post-emergent treatment",
-      "Targeted spot treatments",
-      "Safe for pets & children",
-      "Broadleaf & grassy weed control"
-    ],
-    image: "/services/trimming-edging-placeholder.webp",
-    price: "Starting at $30"
+    price: "Get A Free Quote Today!"
   },
   {
     id: "hedge-trimming",
@@ -127,7 +95,7 @@ export const services: Service[] = [
       "Seasonal maintenance plans"
     ],
     image: "/services/hedge-placeholder.webp",
-    price: "Starting at $25"
+    price: "Get A Free Quote Today!"
   },
   {
     id: "leaf-removal",
@@ -143,7 +111,7 @@ export const services: Service[] = [
       "Weekly fall service plans"
     ],
     image: "/services/leaf-placeholder.webp",
-    price: "Starting at $60"
+    price: "Get A Free Quote Today!"
   },
   {
     id: "spring-cleanup",
@@ -159,7 +127,7 @@ export const services: Service[] = [
       "Complete property refresh"
     ],
     image: "/services/season-placeholder.webp",
-    price: "Starting at $125"
+    price: "Get A Free Quote Today!"
   }
 ];
 

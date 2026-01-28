@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Script from "next/script"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader2, Navigation } from "lucide-react"
@@ -11,6 +12,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 
 import { formatPhoneNumber } from "@/lib/utils"
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
 // Google Maps directions URL for the business address
 const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(companyInfo.address)}`
@@ -48,10 +51,14 @@ const contactInfo = [
 
 export function ContactSection() {
   const ref = React.useRef<HTMLDivElement>(null)
+  const turnstileRef = React.useRef<HTMLDivElement>(null)
+  const turnstileWidgetId = React.useRef<string | null>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [isSubmitted, setIsSubmitted] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
+  const [turnstileToken, setTurnstileToken] = React.useState<string | null>(null)
+  const [turnstileReady, setTurnstileReady] = React.useState(!TURNSTILE_SITE_KEY)
   const [formData, setFormData] = React.useState({
     firstName: "",
     lastName: "",
@@ -60,6 +67,48 @@ export function ContactSection() {
     service: "",
     message: "",
   })
+
+  const renderTurnstile = React.useCallback(() => {
+    if (
+      !TURNSTILE_SITE_KEY ||
+      !turnstileRef.current ||
+      turnstileWidgetId.current !== null ||
+      typeof window === "undefined" ||
+      !(window as unknown as { turnstile?: { render: (el: HTMLElement, opts: Record<string, unknown>) => string } }).turnstile
+    ) return
+
+    const ts = (window as unknown as { turnstile: { render: (el: HTMLElement, opts: Record<string, unknown>) => string } }).turnstile
+    turnstileWidgetId.current = ts.render(turnstileRef.current, {
+      sitekey: TURNSTILE_SITE_KEY,
+      callback: (token: string) => {
+        setTurnstileToken(token)
+        setTurnstileReady(true)
+      },
+      "expired-callback": () => {
+        setTurnstileToken(null)
+        setTurnstileReady(false)
+      },
+      "error-callback": () => {
+        setTurnstileToken(null)
+        setTurnstileReady(false)
+      },
+      theme: "auto",
+    })
+  }, [])
+
+  const resetTurnstile = React.useCallback(() => {
+    if (
+      !TURNSTILE_SITE_KEY ||
+      turnstileWidgetId.current === null ||
+      typeof window === "undefined" ||
+      !(window as unknown as { turnstile?: { reset: (id: string) => void } }).turnstile
+    ) return
+
+    const ts = (window as unknown as { turnstile: { reset: (id: string) => void } }).turnstile
+    ts.reset(turnstileWidgetId.current)
+    setTurnstileToken(null)
+    setTurnstileReady(false)
+  }, [])
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -94,11 +143,15 @@ export function ContactSection() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          ...(turnstileToken ? { turnstileToken } : {}),
+        }),
       })
 
       if (!response.ok) {
-        throw new Error("Failed to send message")
+        const data = await response.json().catch(() => ({}))
+        throw new Error(data.error || "Failed to send message")
       }
 
       setIsSubmitted(true)
@@ -110,9 +163,11 @@ export function ContactSection() {
         service: "",
         message: "",
       })
+      resetTurnstile()
       setTimeout(() => setIsSubmitted(false), 5000)
     } catch {
       setError(contactSectionContent.form.errorMessage)
+      resetTurnstile()
     } finally {
       setIsLoading(false)
     }
@@ -315,11 +370,21 @@ export function ContactSection() {
                   />
                 </div>
 
+                {TURNSTILE_SITE_KEY && (
+                  <>
+                    <Script
+                      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+                      onReady={renderTurnstile}
+                    />
+                    <div ref={turnstileRef} className="flex justify-center" />
+                  </>
+                )}
+
                 <Button
                   type="submit"
                   size="lg"
                   className="w-full group glow-blue"
-                  disabled={isSubmitted || isLoading}
+                  disabled={isSubmitted || isLoading || !turnstileReady}
                 >
                   {isSubmitted ? (
                     <>

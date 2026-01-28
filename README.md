@@ -214,11 +214,43 @@ Then use it in your data:
 
 ### 6. Contact Form & Email Template
 
-The contact form uses the [Resend API](https://resend.com/) to send emails.
+The contact form uses the [Resend API](https://resend.com/) to send emails and [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) for bot protection.
 
 *   **API Key**: Ensure your `RESEND_API_KEY` is correctly set in your `.env.local` file (and on your hosting provider).
 *   **Email Template**: The HTML structure of the email sent upon form submission is defined in `lib/data/contact.ts` within the `quoteEmailTemplate` string. Customize this to match your branding and include all necessary information.
     *   **Important**: Placeholders like `{{firstName}}`, `{{email}}`, etc., are used to dynamically insert form data. If you change your form fields, ensure these placeholders are updated accordingly in the template.
+
+### 7. Cloudflare Turnstile (Bot Protection)
+
+The contact form includes [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) integration to protect against spam and bot submissions. Turnstile is a free, privacy-friendly alternative to CAPTCHA.
+
+#### Setup
+
+1.  Go to the [Cloudflare Dashboard](https://dash.cloudflare.com/) and navigate to **Turnstile**.
+2.  Click **Add widget** and enter your site's domain.
+3.  Choose a widget mode (Managed is recommended — it's invisible to most users).
+4.  Copy the **Site Key** and **Secret Key**.
+5.  Add them to your `.env.local` file:
+    ```
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY="your_site_key"
+    TURNSTILE_SECRET_KEY="your_secret_key"
+    ```
+6.  For production (e.g., Vercel), add both environment variables in your hosting provider's settings.
+
+#### How It Works
+
+-   **Client-side:** When both keys are configured, the Turnstile widget renders in the contact form before the submit button. The form cannot be submitted until the challenge is passed.
+-   **Server-side:** The API route (`/api/send-quote`) validates the Turnstile token with Cloudflare's verification endpoint before processing the form submission.
+-   **Graceful degradation:** If the environment variables are not set (e.g., during local development), the form works normally without Turnstile verification.
+
+#### Security Features
+
+The contact form includes multiple layers of protection:
+-   **Cloudflare Turnstile** — Bot and spam prevention
+-   **Rate limiting** — 5 requests per minute per IP address
+-   **Origin validation** — Only accepts requests from allowed domains
+-   **Input validation** — Length limits, email/phone format checks
+-   **Input sanitization** — HTML escaping on all user inputs
 
 ## Extending Functionality
 
