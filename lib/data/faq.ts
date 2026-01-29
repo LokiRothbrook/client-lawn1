@@ -107,5 +107,5 @@ export const faqData: FAQItem[] = [
  */
 export const faqPageContent = {
   title: "Frequently Asked Questions",
-  description: "Have questions about lawn care? We have answers. Find answers to common questions about our lawn care services, pricing, scheduling, and more.",
+  description: "Have questions about lawn care? We have answers. Find answers to common questions about our lawn care services, scheduling, and more.",
 };
